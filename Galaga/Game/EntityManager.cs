@@ -5,11 +5,11 @@ using System.Collections.ObjectModel;
 
 namespace Galaga.Game {
     public class EntityManager {
-        private List<Entity.Entity> _entities = new List<Entity.Entity>();
+        private readonly List<Entity.Entity> _entities = new List<Entity.Entity>();
         public ReadOnlyCollection<Entity.Entity> Entities => _entities.AsReadOnly();
 
         public delegate void OnEntityKillDelegate(Entity.Entity entity);
-        public List<OnEntityKillDelegate> OnEntityKill = new List<OnEntityKillDelegate>();
+        public readonly List<OnEntityKillDelegate> OnEntityKill = new List<OnEntityKillDelegate>();
 
         public void OnTick(int currentTick) {
             var destroy = _entities.FindAll(entity => entity.Health <= 0);

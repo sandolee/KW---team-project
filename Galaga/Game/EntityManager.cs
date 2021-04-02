@@ -12,12 +12,15 @@ namespace Galaga.Game {
         public readonly List<OnEntityKillDelegate> OnEntityKill = new List<OnEntityKillDelegate>();
 
         public void OnTick(int currentTick) {
-            var destroy = _entities.FindAll(entity => entity.Health <= 0);
-            foreach (var entity in destroy) {
-                _entities.Remove(entity);
-                
-                OnEntityKill.ForEach(del => del(entity));
+            foreach (var entity in _entities) {
+                if (entity.Health <= 0) {
+                    OnEntityKill.ForEach(del => del(entity));
+                } else {
+                    entity.OnTick(currentTick);
+                }
             }
+
+            _entities.RemoveAll(entity => entity.Health <= 0);
         }
 
         public void AddEntity(Entity.Entity entity) {

@@ -23,13 +23,13 @@ namespace Galaga.Game {
             _gameDelegate?.OnTick(currentTick);
         }
 
-        public EntityManager? GetEntityManager() {
-            return _gameDelegate?.GetEntityManager();
+        public World? GetWorld() {
+            return _gameDelegate?.GetWorld();
         }
     }
 
     public interface IGameDelegate {
-        EntityManager GetEntityManager();
+        World GetWorld();
 
         void OnTick(int currentTick);
     }

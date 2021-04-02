@@ -16,7 +16,7 @@ namespace Galaga {
         public void Draw() {
             // TODO draw background
 
-            var entities = _game.GetEntityManager()?.Entities;
+            var entities = _game.GetWorld()?.EntityManager.Entities;
             if (entities == null) return;
 
             foreach (var entity in entities) {

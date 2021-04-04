@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using Galaga.Game;
 
 namespace Galaga.Entity {
     public class Position {
@@ -19,17 +20,19 @@ namespace Galaga.Entity {
     
     public abstract class Entity {
         public Position Position;
-        
+        public World World;
+
         private int _health;
 
         public int Health => _health;
 
-        protected Entity(Position position, int health) {
+        protected Entity(Position position, World world, int health) {
             Position = position;
+            World = world;
             _health = health;
         }
 
-        protected Entity(): this(new Position(0, 0), 0) {
+        protected Entity(World world): this(new Position(0, 0), world, 0) {
         }
 
         public void Attack(int damage) {

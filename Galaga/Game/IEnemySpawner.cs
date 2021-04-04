@@ -4,26 +4,34 @@ using System.Collections.Generic;
 
 namespace Galaga.Game {
     public interface IEnemySpawner {
+        void SetWorld(World world);
+        
         IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick);
     }
 
     public class EnemySpawnerImpl: IEnemySpawner {
-        private IEnemySpawnerDelegate? _enemySpawnerDelegate;
+        private IEnemySpawnerStrategy? _enemySpawnerStrategy;
+        private World? _world;
 
-        public EnemySpawnerImpl(IEnemySpawnerDelegate? enemySpawnerDelegate = null) {
-            _enemySpawnerDelegate = enemySpawnerDelegate;
+        public EnemySpawnerImpl(IEnemySpawnerStrategy? enemySpawnerStrategy = null) {
+            _enemySpawnerStrategy = enemySpawnerStrategy;
+        }
+
+        public void SetWorld(World world) {
+            _world = world;
         }
 
         public IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick) {
-            return _enemySpawnerDelegate?.GetSpawnEntities(currentTick) ?? new Entity.Entity[0];
+            if (_world == null) return new Entity.Entity[0];
+            return _enemySpawnerStrategy?.GetSpawnEntities(currentTick, _world) ?? new Entity.Entity[0];
         }
 
-        public void SetEnemySpawnerDelegate(IEnemySpawnerDelegate enemySpawnerDelegate) {
-            _enemySpawnerDelegate = enemySpawnerDelegate;
+        public void SetEnemySpawnerStrategy(IEnemySpawnerStrategy enemySpawnerStrategy) {
+            _enemySpawnerStrategy = enemySpawnerStrategy;
         }
     }
 
-    public interface IEnemySpawnerDelegate {
-        Entity.Entity[] GetSpawnEntities(int currentTick);
+    public interface IEnemySpawnerStrategy {
+        Entity.Entity[] GetSpawnEntities(int currentTick, World world);
     }
 }

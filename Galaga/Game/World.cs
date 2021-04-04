@@ -10,6 +10,7 @@ namespace Galaga.Game {
             EntityManager = new EntityManager();
 
             _enemySpawner = enemySpawner;
+            _enemySpawner.SetWorld(this);
         }
 
         public void OnTick(int currentTick) {

@@ -26,10 +26,18 @@ namespace Galaga.Entity {
 
         public int Health => _health;
 
-        protected Entity(Position position, World world, int health) {
+        private Size _size;
+        public Size Size => _size;
+
+        protected Entity(Position position, World world, Size size, int health) {
             Position = position;
             World = world;
             _health = health;
+            _size = size;
+        }
+        
+        protected Entity(Position position, World world, int health): this(position, world, new Size(1, 1), health) {
+            
         }
 
         protected Entity(World world): this(new Position(0, 0), world, 0) {

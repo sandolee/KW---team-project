@@ -3,14 +3,21 @@
 namespace Galaga.Game {
     public class World {
         private readonly IEnemySpawner _enemySpawner;
-        
+        public readonly Size Size;
+
         public EntityManager EntityManager { get; }
 
-        public World(IEnemySpawner enemySpawner) {
+        public World(IEnemySpawner enemySpawner, Size size) {
             EntityManager = new EntityManager();
+
+            Size = size;
 
             _enemySpawner = enemySpawner;
             _enemySpawner.SetWorld(this);
+        }
+
+        public World(IEnemySpawner enemySpawner): this(enemySpawner, new Size(100, 100)) {
+            
         }
 
         public void OnTick(int currentTick) {
@@ -19,6 +26,16 @@ namespace Galaga.Game {
             }
 
             EntityManager.OnTick(currentTick);
+        }
+    }
+
+    public class Size {
+        public readonly int Width;
+        public readonly int Height;
+        
+        public Size(int width, int height) {
+            Width = width;
+            Height = height;
         }
     }
 }

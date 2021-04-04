@@ -33,4 +33,20 @@ namespace Galaga.Game {
 
         void OnTick(int currentTick);
     }
+
+    public class SimpleGameDelegate : IGameDelegate {
+        private World _world;
+
+        public SimpleGameDelegate(World world) {
+            _world = world;
+        }
+        
+        public World GetWorld() {
+            return _world;
+        }
+
+        public void OnTick(int currentTick) {
+            _world.OnTick(currentTick);
+        }
+    }
 }

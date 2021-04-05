@@ -26,6 +26,7 @@ namespace Galaga {
             };
             timer.Tick += OnTimerTick;
             timer.Start();
+            KeyDown += Form1_KeyDown;
         }
 
         private void OnTimerTick(object obj, EventArgs args) {
@@ -38,5 +39,10 @@ namespace Galaga {
             _game.OnTick(_tick++);
             _gameRenderer.Draw(e.Graphics);
         }
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            _player.Player_KeyPress(sender, e, _game);
+        }
+
     }
 }

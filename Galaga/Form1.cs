@@ -30,13 +30,14 @@ namespace Galaga {
         }
 
         private void OnTimerTick(object obj, EventArgs args) {
+            _game.OnTick(_tick++);
+
             Invalidate();
         }
 
         protected override void OnPaint(PaintEventArgs e) {
             base.OnPaint(e);
             
-            _game.OnTick(_tick++);
             _gameRenderer.Draw(e.Graphics);
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)

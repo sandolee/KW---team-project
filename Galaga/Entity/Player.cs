@@ -7,14 +7,9 @@ namespace Galaga.Entity
 {
     public class Player : Entity
     {
-        public event KeyEventHandler? keyPress;
-        public Player(World world) : this(new Position(0, 0), world, 10)
+        public Player(World world) : this(new Position(0, 0), world, 10){}
+        public void Player_KeyPress(object sender, KeyEventArgs e)
         {
-            var world1 = world;
-        }
-        public void Player_KeyPress(object sender, KeyEventArgs e, Game.Game game)
-        {
-            var world = game.GetWorld();
             switch (e.KeyCode)
             {
                 case Keys.Right:
@@ -26,8 +21,8 @@ namespace Galaga.Entity
                         this.Position.X -= 7;
                     break;
                 case Keys.Space:
-                    world.EntityManager.AddEntity(new Ammo(new Position(Position.X + 4, Position.Y - 4), world, 1));
-                    world.EntityManager.AddEntity(new Ammo(new Position(Position.X - 4, Position.Y - 4), world, 1));
+                    World.EntityManager.AddEntity(new Ammo(new Position(Position.X + 4, Position.Y - 4), World, 1));
+                    World.EntityManager.AddEntity(new Ammo(new Position(Position.X - 4, Position.Y - 4), World, 1));
                     break;
                 default:
                     break;

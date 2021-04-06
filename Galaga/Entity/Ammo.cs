@@ -11,7 +11,7 @@ namespace Galaga.Entity {
 		}
 		
 		public override void OnTick(int currentTick) {
-			
+			Position.Y = Position.Y - currentTick/20;
 		}
 	}
 }

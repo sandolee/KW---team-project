@@ -42,7 +42,7 @@ namespace Galaga {
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            _player.Player_KeyPress(sender, e);
+            _player.Move(e);
         }
 
     }

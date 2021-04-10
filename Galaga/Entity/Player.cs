@@ -8,7 +8,7 @@ namespace Galaga.Entity
     public class Player : Entity
     {
         public Player(World world) : this(new Position(0, 0), world, 10){}
-        public void Player_KeyPress(object sender, KeyEventArgs e)
+        public void Move(KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -17,7 +17,7 @@ namespace Galaga.Entity
                         this.Position.X += 7;
                     break;
                 case Keys.Left:
-                    if (this.Position.X >= this.Size.Width)
+                    if (this.Position.X >= this.Size.Width) 
                         this.Position.X -= 7;
                     break;
                 case Keys.Space:

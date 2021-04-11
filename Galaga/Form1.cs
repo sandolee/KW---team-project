@@ -42,7 +42,22 @@ namespace Galaga {
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            _player.Move(e);
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                    _player.Move(7,0);
+                    break;
+                case Keys.Left:
+
+                    _player.Move(-7, 0);
+                    break;
+                case Keys.Space:
+                    _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X + 4, _player.Position.Y - 4), _game.GetWorld(), 1));
+                    _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X - 4, _player.Position.Y - 4), _game.GetWorld(), 1));
+                    break;
+                default:
+                    break;
+            }
         }
 
     }

@@ -52,19 +52,6 @@ namespace Galaga {
             return new Point((int) (position.X * factor), (int) (position.Y * factor));
         }
 
-        private static Rectangle EntityToRect(Entity.Entity entity)
-        {
-            var width = entity.Size.Width;
-            var height = entity.Size.Height;
-
-            return new Rectangle(
-                (int)((entity.Position.X - width / 2f)),
-                (int)((entity.Position.Y - height / 2f)),
-                (int)(width),
-                (int)(height)
-            );
-        }
-
         private static Rectangle EntityToRect(Entity.Entity entity, float factorWidth, float factorHeight) {
             var width = entity.Size.Width;
             var height = entity.Size.Height;
@@ -72,8 +59,8 @@ namespace Galaga {
             return new Rectangle(
                 (int) ((entity.Position.X - width / 2f) * factorWidth),
                 (int) ((entity.Position.Y - height / 2f) * factorHeight),
-                (int) (width * Math.Min(factorWidth, factorHeight)),
-                (int) (height * Math.Min(factorWidth, factorHeight))
+                (int) (width * factorWidth),
+                (int) (height * factorHeight)
             );
         }
     }

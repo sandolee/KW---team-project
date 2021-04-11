@@ -8,27 +8,14 @@ namespace Galaga.Entity
     public class Player : Entity
     {
         public Player(World world) : this(new Position(0, 0), world, 10){}
-        public void Player_KeyPress(object sender, KeyEventArgs e)
+        public void Move(int x, int y)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.Right:
-                    if (this.Position.X <= World.Size.Width - this.Size.Width)
-                        this.Position.X += 7;
-                    break;
-                case Keys.Left:
-                    if (this.Position.X >= this.Size.Width)
-                        this.Position.X -= 7;
-                    break;
-                case Keys.Space:
-                    World.EntityManager.AddEntity(new Ammo(new Position(Position.X + 4, Position.Y - 4), World, 1));
-                    World.EntityManager.AddEntity(new Ammo(new Position(Position.X - 4, Position.Y - 4), World, 1));
-                    break;
-                default:
-                    break;
-            }
-
+            if (x>0 && this.Position.X <= World.Size.Width - this.Size.Width)
+                Position.X += x;
+            if ( x<0&& this.Position.X >= this.Size.Width)
+                Position.X += x;
         }
+
         public Player(Position position, World world, int health) : base(
             new Position(world.Size.Width / 2, (int)(world.Size.Height)),
             world,

@@ -11,7 +11,14 @@ namespace Galaga.Entity {
 		}
 		
 		public override void OnTick(int currentTick) {
-			Position.Y = Position.Y - currentTick/20;
+			
+			Position.Y= Position.Y - 5;
+
+			if(ammo_enemy_check(this) == true){
+				Position.Y = -5;
+				Position.X = -5;
+			}
+				
 		}
 	}
 }

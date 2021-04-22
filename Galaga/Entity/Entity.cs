@@ -49,17 +49,15 @@ namespace Galaga.Entity {
 
         public abstract void OnTick(int currentTick);
 
-        public bool entity_enemy_check(Enemy b)
+        public bool entity_enemy_check(Enemy b) //비행기본체와 적 피격판정
         {
             //true => 피격성공
             if( this.Position.Y - this.Size.Width >= b.Position.Y  + b.Size.Width || this.Position.Y - this.Size.Width <= b.Position.Y - b.Size.Width)
                 return false;
-<<<<<<< HEAD
-            else if(this.Position.X + this..Size.Width <= b.Position.X - b.Size.Width || this.Position.X - this..Size.Width >= b.Position.X + b.Size.Width )
-=======
+
             else if(this.Position.X + this.Size.Width <= b.Position.X - b.Size.Width || this.Position.X - this.Size.Width >= b.Position.X + b.Size.Width )
->>>>>>> cho
                 return false;
+            
             else
                 return true;
 
@@ -67,14 +65,12 @@ namespace Galaga.Entity {
 
  
 
-        public bool ammo_enemy_check(Ammo b)
+        public bool ammo_enemy_check(Ammo b) //총알과 적 피격판정
         {
             //true => 피격 성공
-<<<<<<< HEAD
-            if(this.Position.X - this..Size.Width <= b.Position.X && this.Position.X + this..Size.Width >= b.Position.X && this.Position.Y + this..Size.Width >= b.Position.Y && this.Position.Y - this..Size.Width <= b.Position.Y)
-=======
+
             if(this.Position.X - this.Size.Width <= b.Position.X && this.Position.X + this.Size.Width >= b.Position.X && this.Position.Y + this.Size.Width >= b.Position.Y && this.Position.Y - this.Size.Width <= b.Position.Y)
->>>>>>> cho
+
                 return true;
             else
                 return false;

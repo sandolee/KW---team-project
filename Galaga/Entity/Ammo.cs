@@ -15,8 +15,8 @@ namespace Galaga.Entity {
 			Position.Y= Position.Y - 5;
 
 			if(ammo_enemy_check(this) == true){
-				Position.Y = -5;
-				Position.X = -5;
+				//Position.Y = -5;
+				//Position.X = -5;
 			}
 				
 		}

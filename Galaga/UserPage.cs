@@ -33,12 +33,7 @@ namespace Galaga
         private void UserPage_Load(object sender, EventArgs e)
         {
             var userInfo = FileAccess.FileAccess.ReadInfo();
-            int userIndex=0;
-
-
-            for (int row = 0; row < userInfo.Count; row++)
-                if (string.Equals(userInfo[row].id, userName))
-                    userIndex = row;
+            var userIndex = userInfo.FindIndex(it => string.Equals(it.id, userName));
 
             lblName.Text = userInfo[userIndex].id;
             lblStage.Text = userInfo[userIndex].stage.ToString();

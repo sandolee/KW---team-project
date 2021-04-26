@@ -15,44 +15,38 @@ namespace Galaga.Ui
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             this.BackColor = Color.Transparent;
         }
-        protected override void OnPaint(PaintEventArgs pevent)
+        protected override void OnPaint(PaintEventArgs eventArgs)
 
         {
+            base.OnPaint(eventArgs);
 
-            base.OnPaint(pevent);
+            eventArgs.Graphics.DrawRectangle(new Pen(Color.White, 4), new Rectangle(0, 0, Width, Height));
 
-            //pevent.Graphics.FillRectangle(new SolidBrush(ButtonColor), 0, 0, Width, Height);
-            pevent.Graphics.DrawRectangle(new Pen(Color.White, 3), new Rectangle(0, 0, Width, Height));
             TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
-
-            TextRenderer.DrawText(pevent.Graphics, Text, Font, new Point(Width + 3, Height / 2), ForeColor, flags);
-
+            TextRenderer.DrawText(eventArgs.Graphics, Text, Font, new Point(Width, Height / 2), ForeColor, flags);
         }
 
 
-        protected override void OnMouseDown(MouseEventArgs mevent)
+        protected override void OnMouseDown(MouseEventArgs eventArgs)
 
         {
-
-            base.OnMouseDown(mevent);
+            base.OnMouseDown(eventArgs);
             
             this.BackColor = Color.FromArgb(100, Color.White);
             this.ForeColor = Color.Black;
 
             Invalidate();
-
         }
 
-        protected override void OnMouseUp(MouseEventArgs mevent)
+        protected override void OnMouseUp(MouseEventArgs eventArgs)
 
         {
+            base.OnMouseUp(eventArgs);
 
-            base.OnMouseUp(mevent);
             this.BackColor = Color.Transparent;
             this.ForeColor = Color.White;
 
             Invalidate();
-
         }
 
     }

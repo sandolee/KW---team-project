@@ -40,6 +40,7 @@ namespace Galaga
             // btnOk
             // 
             this.btnOk.BackColor = System.Drawing.Color.Transparent;
+            this.btnOk.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOk.ForeColor = System.Drawing.Color.White;
             this.btnOk.Location = new System.Drawing.Point(154, 175);
             this.btnOk.Name = "btnOk";
@@ -51,22 +52,22 @@ namespace Galaga
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(85, 129);
+            this.label3.Location = new System.Drawing.Point(79, 129);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 24);
+            this.label3.Size = new System.Drawing.Size(73, 32);
             this.label3.TabIndex = 7;
             this.label3.Text = "PW : ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(101, 91);
+            this.label2.Location = new System.Drawing.Point(95, 91);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 24);
+            this.label2.Size = new System.Drawing.Size(59, 32);
             this.label2.TabIndex = 8;
             this.label2.Text = "ID : ";
             // 
@@ -77,6 +78,7 @@ namespace Galaga
             this.txtPW.PasswordChar = '*';
             this.txtPW.Size = new System.Drawing.Size(172, 28);
             this.txtPW.TabIndex = 5;
+            this.txtPW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtID
             // 
@@ -84,15 +86,16 @@ namespace Galaga
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(172, 28);
             this.txtID.TabIndex = 6;
+            this.txtID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(151, 35);
+            this.label1.Location = new System.Drawing.Point(163, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 32);
+            this.label1.Size = new System.Drawing.Size(111, 48);
             this.label1.TabIndex = 4;
             this.label1.Text = "Login";
             // 

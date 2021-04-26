@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Galaga.Ui;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,22 +17,21 @@ namespace Galaga
         public Main()
         {
             InitializeComponent();
-            
         }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //this.Hide();
             Login Login = new Login();
             Login.Owner = this;
+            Login.StartPosition = FormStartPosition.CenterParent;
             Login.ShowDialog();
 
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            sign_up SignUp = new sign_up();
+            SignUp SignUp = new SignUp();
             SignUp.Owner = this;
+            SignUp.StartPosition = FormStartPosition.CenterParent;
             SignUp.ShowDialog();
         }
     }

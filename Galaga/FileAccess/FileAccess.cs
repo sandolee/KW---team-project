@@ -8,18 +8,38 @@ using System.Windows.Forms;
 
 namespace Galaga.FileAccess
 {
-    class FileAccess
+
+    public class Account
     {
-        String path = System.IO.Directory.GetCurrentDirectory()+"./../../PlayerInfo/PlayerInfo.csv";
-        public List<string[]> readInfo()
+        public string id;
+        public string password;
+        public int stage;
+        public int score;
+        public Account(string id, int stage, int score, string password)
+        {
+            this.id = id; this.password = password; this.stage = stage; this.score = score;
+        }
+    }
+    static class FileAccess
+    {
+        static String path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "PlayerInfo", "PlayerInfo.csv"));
+
+        public static List<Account> ReadInfo()
         {
             StreamReader sr = new StreamReader(path);
+            List<Account> accounts = new List<Account>();
             var csvList = new List<string[]>();
             try
             {
                 string line;
                 while ((line = sr.ReadLine()) != null)
+                {
                     csvList.Add(line.Split(','));
+                }
+                for (int row = 0; row < csvList.Count; row++)
+                {
+                    accounts.Add(new Account(csvList[row][0], int.Parse(csvList[row][1]), int.Parse(csvList[row][2]), csvList[row][3]));
+                }
 
             }
             catch (Exception e)
@@ -30,10 +50,10 @@ namespace Galaga.FileAccess
             {
                 sr.Close();
             }
-            return csvList;
+            return accounts;
         }
 
-        public void WriteInfo(String ID, String PW)
+        public static void WriteInfo(String ID, String PW)
         {
             try
             {

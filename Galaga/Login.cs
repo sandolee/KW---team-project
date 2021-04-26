@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Galaga.FileAccess;
+using Galaga.Ui;
 
 namespace Galaga
 {
@@ -18,40 +19,41 @@ namespace Galaga
         {
             InitializeComponent();
         }
-        
         private void btnOk_Click(object sender, EventArgs e)
         {
-            FileAccess.FileAccess fileAccess = new FileAccess.FileAccess();
+            if (String.Equals(txtID.Text, String.Empty) || String.Equals(txtPW.Text, String.Empty))
+            {
+                MessageBox.Show("ID와 PW를 입력하세요");
+            }
             bool check=false;
-            List<string[]> PlayerInfoList = fileAccess.readInfo();
+            var PlayerInfoList = FileAccess.FileAccess.ReadInfo();
 
-            //playerInfo는 ID, Stage, Score, PW 순서로 저장되어 있음
             for (int row = 0; row < PlayerInfoList.Count; row++)
-                if (string.Equals(PlayerInfoList[row][0], txtID.Text))
+                if (string.Equals(PlayerInfoList[row].id, txtID.Text))
+                {
                     check = true;
-            if (check)
-            {
-                check = false;
+                    if(string.Equals(PlayerInfoList[row].password, txtPW.Text)){
 
-                for (int row = 0; row < PlayerInfoList.Count; row++)
-                    if (string.Equals(PlayerInfoList[row][3], txtPW.Text))
-                        check = true;
-            }
-            if (check)
-            {
-                this.Hide();
-                this.Owner.Hide();
-                UserPage UserPage = new UserPage(txtID.Text);
-                UserPage.Owner = this;
-                UserPage.ShowDialog();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Check ID or PW");
-            }
-            
-            
+                        this.Hide();
+                        this.Owner.Hide();
+                        UserPage userPage = new UserPage(txtID.Text);
+                        userPage.Owner = this;
+                        userPage.ShowDialog();
+                        this.Close();
+                    }
+                    else
+                        MessageBox.Show("Check PW");
+                }
+                    check = true;
+            if (!check)
+                MessageBox.Show("Check ID");
+
         }
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnOk_Click(sender, e);
+        }
+
     }
 }

@@ -24,6 +24,7 @@ namespace Galaga
             if (String.Equals(txtID.Text, String.Empty) || String.Equals(txtPW.Text, String.Empty))
             {
                 MessageBox.Show("ID와 PW를 입력하세요");
+                return;
             }
             bool check=false;
             var PlayerInfoList = FileAccess.FileAccess.ReadInfo();
@@ -44,7 +45,6 @@ namespace Galaga
                     else
                         MessageBox.Show("Check PW");
                 }
-                    check = true;
             if (!check)
                 MessageBox.Show("Check ID");
 

@@ -10,6 +10,7 @@ namespace Galaga {
         private GameRenderer _gameRenderer;
         private Game.Game _game;
         private Player _player;
+        private TestEnemy _enemy;
         
         public Form1() {
             InitializeComponent();
@@ -20,13 +21,18 @@ namespace Galaga {
             _gameRenderer = new GameRenderer(this, _game);
 
             world.EntityManager.AddEntity(_player);
-
+            
             var timer = new Timer {
                 Interval = 50, Enabled = true,
             };
             timer.Tick += OnTimerTick;
             timer.Start();
             KeyDown += Form1_KeyDown;
+
+            // 테스트적 생성
+            _enemy = new TestEnemy(world);
+            world.EntityManager.AddEntity(_enemy);
+             
         }
 
         private void OnTimerTick(object obj, EventArgs args) {
@@ -52,8 +58,8 @@ namespace Galaga {
                     _player.Move(-5, 0);
                     break;
                 case Keys.Space:
-                    _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X + 4, _player.Position.Y - 4), _game.GetWorld(), 1));
-                    _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X - 4, _player.Position.Y - 4), _game.GetWorld(), 1));
+                    _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X + 4, _player.Position.Y ), _game.GetWorld(), 1));
+                    _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X - 4, _player.Position.Y ), _game.GetWorld(), 1));
                     break;
                 default:
                     break;

@@ -48,5 +48,20 @@ namespace Galaga.Entity {
         }
 
         public abstract void OnTick(int currentTick);
+
+        public bool EntityCollisionCheck(Enemy b) //비행기본체와 적 피격판정
+        {
+            //true => 피격성공
+            if( this.Position.Y - this.Size.Height >= b.Position.Y  + b.Size.Height || this.Position.Y + this.Size.Height <= b.Position.Y - b.Size.Height)
+                return false;
+
+            else if(this.Position.X + this.Size.Width <= b.Position.X - b.Size.Width || this.Position.X - this.Size.Width >= b.Position.X + b.Size.Width )
+                return false;
+            
+            else
+                return true;
+
+        }
+               
     }
 }

@@ -13,12 +13,12 @@ namespace Galaga {
         
         public Form1() {
             InitializeComponent();
-
             var world = new World(new EnemySpawnerImpl());
             _player = new Player(world);
             _game = new Game.Game(new SimpleGameDelegate(world));
+
             _gameRenderer = new GameRenderer(this, _game);
-            
+
             world.EntityManager.AddEntity(_player);
 
             var timer = new Timer {
@@ -45,11 +45,11 @@ namespace Galaga {
             switch (e.KeyCode)
             {
                 case Keys.Right:
-                    _player.Move(7,0);
+                    _player.Move(5,0);
                     break;
                 case Keys.Left:
 
-                    _player.Move(-7, 0);
+                    _player.Move(-5, 0);
                     break;
                 case Keys.Space:
                     _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X + 4, _player.Position.Y - 4), _game.GetWorld(), 1));

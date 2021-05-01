@@ -25,38 +25,42 @@ namespace Galaga {
 
             float width = _control.DisplayRectangle.Right - _control.DisplayRectangle.Left;
             float height = _control.DisplayRectangle.Bottom - _control.DisplayRectangle.Top;
-            var factor = Math.Min(width / world.Size.Width, height / world.Size.Height);
 
-            graphics.FillRectangle(Brushes.Black, 0, 0, world.Size.Width * factor, world.Size.Height * factor);
+            var factorWidth = width / world.Size.Width;
+            var factorHeight = height / world.Size.Height;
+            graphics.FillRectangle(Brushes.Black, 0, 0, world.Size.Width * factorWidth, world.Size.Height * factorHeight);
 
-            foreach (var entity in entities) {
-                switch (entity) {
+            foreach (var entity in entities)
+            {
+                switch (entity)
+                {
                     case Enemy enemy:
-                        graphics.DrawImage(_resources.Enemy, EntityToRect(enemy, factor));
+                        graphics.DrawImage(_resources.Enemy, EntityToRect(enemy,factorWidth, factorHeight));
                         break;
                     case Ammo ammo:
-                        graphics.DrawImage(_resources.Ammo, EntityToRect(ammo, factor));
+                        graphics.DrawImage(_resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));
                         break;
                     case Player player:
-                        graphics.DrawImage(_resources.Player, EntityToRect(player, factor));
+                        graphics.DrawImage(_resources.Player, EntityToRect(player, factorWidth, factorHeight));
                         break;
                 }
             }
+
         }
 
         private static Point PositionToPoint(Position position, float factor) {
             return new Point((int) (position.X * factor), (int) (position.Y * factor));
         }
 
-        private static Rectangle EntityToRect(Entity.Entity entity, float factor) {
+        private static Rectangle EntityToRect(Entity.Entity entity, float factorWidth, float factorHeight) {
             var width = entity.Size.Width;
             var height = entity.Size.Height;
 
             return new Rectangle(
-                (int) ((entity.Position.X - width / 2f) * factor),
-                (int) ((entity.Position.Y - height / 2f) * factor),
-                (int) (width * factor),
-                (int) (height * factor)
+                (int) ((entity.Position.X - width / 2f) * factorWidth),
+                (int) ((entity.Position.Y - height / 2f) * factorHeight),
+                (int) (width * factorWidth),
+                (int) (height * factorHeight)
             );
         }
     }

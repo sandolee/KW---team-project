@@ -17,7 +17,7 @@ namespace Galaga.Entity
         }
 
         public Player(Position position, World world, int health) : base(
-            new Position(world.Size.Width / 2, (int)(world.Size.Height)),
+            new Position(world.Size.Width / 2, (int)(world.Size.Height-5)),
             world,
             new Size(10, 10),
             health

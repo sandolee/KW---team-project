@@ -74,6 +74,7 @@
     <Compile Include="Game\IEnemySpawner.cs" />
     <Compile Include="Game\EntityManager.cs" />
     <Compile Include="Game\Game.cs" />
+	<Compile Include="Game\GameManager.cs" />
     <Compile Include="Game\World.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,23 +5,19 @@ using Galaga.Game;
 
 namespace Galaga {
     public partial class Form1 : Form {
-        private int _tick;
+        private int tick;
         
-        private GameRenderer _gameRenderer;
-        private Game.Game _game;
-        private Player _player;
-        private TestEnemy _enemy;
+        private readonly GameRenderer gameRenderer;
+        private readonly GameManager manager;
         
         public Form1() {
             InitializeComponent();
-            var world = new World(new EnemySpawnerImpl());
-            _player = new Player(world);
-            _game = new Game.Game(new SimpleGameDelegate(world));
-
-            _gameRenderer = new GameRenderer(this, _game);
-
-            world.EntityManager.AddEntity(_player);
             
+            var game = new Stage1Game();
+
+            manager = new GameManager(game);
+            gameRenderer = new GameRenderer(this, manager);
+
             var timer = new Timer {
                 Interval = 50, Enabled = true,
             };
@@ -29,14 +25,14 @@ namespace Galaga {
             timer.Start();
             KeyDown += Form1_KeyDown;
 
+            var world = manager.GetWorld();
             // 테스트적 생성
-            _enemy = new TestEnemy(world);
-            world.EntityManager.AddEntity(_enemy);
-             
+            Enemy enemy = new TestEnemy(manager.GetWorld());
+            world.EntityManager.AddEntity(enemy);
         }
 
         private void OnTimerTick(object obj, EventArgs args) {
-            _game.OnTick(_tick++);
+            manager.Tick(tick++);
 
             Invalidate();
         }
@@ -44,27 +40,26 @@ namespace Galaga {
         protected override void OnPaint(PaintEventArgs e) {
             base.OnPaint(e);
             
-            _gameRenderer.Draw(e.Graphics);
+            gameRenderer.Draw(e.Graphics);
         }
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
+        
+        private void Form1_KeyDown(object sender, KeyEventArgs e) {
+            var player = manager.GetPlayer();
+            var world = manager.GetWorld();
+            
             switch (e.KeyCode)
             {
                 case Keys.Right:
-                    _player.Move(5,0);
+                    player.Move(5,0);
                     break;
                 case Keys.Left:
-
-                    _player.Move(-5, 0);
+                    player.Move(-5, 0);
                     break;
                 case Keys.Space:
-                    _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X + 4, _player.Position.Y ), _game.GetWorld(), 1));
-                    _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X - 4, _player.Position.Y ), _game.GetWorld(), 1));
-                    break;
-                default:
+                    player.World.EntityManager.AddEntity(new Ammo(new Position(player.Position.X + 4, player.Position.Y), player.World, 1));
+                    player.World.EntityManager.AddEntity(new Ammo(new Position(player.Position.X - 4, player.Position.Y), player.World, 1));
                     break;
             }
         }
-
     }
 }

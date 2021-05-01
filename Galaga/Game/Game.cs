@@ -1,52 +1,53 @@
-﻿#nullable enable
+﻿using System.Collections.Generic;
+using Galaga.Entity;
+
+#nullable enable
 
 namespace Galaga.Game {
-    public class Game {
-        private IGameDelegate? gameDelegate;
-        private int stage = 0;
-
-        public Game(IGameDelegate? gameDelegate = null) {
-            this.gameDelegate = gameDelegate;
-        }
-
-        public void SetStage(int value) {
-            this.stage = value;
-            
-            // TODO set IGameDelegate, IEnemySpawner to match stage value
-        }
-
-        private void SetGameDelegate(IGameDelegate gd) {
-            this.gameDelegate = gd;
-        }
-
-        public void OnTick(int currentTick) {
-            gameDelegate?.OnTick(currentTick);
-        }
-
-        public World? GetWorld() {
-            return gameDelegate?.GetWorld();
-        }
-    }
-
-    public interface IGameDelegate {
-        World GetWorld();
-
-        void OnTick(int currentTick);
-    }
-
-    public class SimpleGameDelegate : IGameDelegate {
-        private World world;
-
-        public SimpleGameDelegate(World world) {
-            this.world = world;
-        }
+    public interface IGame {
+        // TODO Add registering game over listener
         
+        public World GetWorld();
+
+        public Player GetPlayer();
+        
+        public void OnTick(int currentTick);
+    }
+
+    public abstract class BaseGame : IGame {
+        private readonly World world;
+        private readonly Player player;
+
+        protected BaseGame(World world) {
+            this.world = world;
+            
+            player = new Player(world);
+            world.EntityManager.AddEntity(player);
+        }
+
         public World GetWorld() {
             return world;
         }
 
+        public Player GetPlayer() {
+            return player;
+        }
+
         public void OnTick(int currentTick) {
             world.OnTick(currentTick);
+        }
+    }
+
+    class Stage1Game : BaseGame {
+        public Stage1Game() : base(new World(new EnemySpawner())) {
+            
+        }
+
+        // Stage 1의 엔티티 소환을 관리
+        private class EnemySpawner : IEnemySpawner {
+            public IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick) {
+                return new Entity.Entity[0];
+            }
         }
     }
 }

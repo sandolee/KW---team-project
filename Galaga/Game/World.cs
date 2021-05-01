@@ -13,7 +13,6 @@ namespace Galaga.Game {
             Size = size;
 
             this.enemySpawner = enemySpawner;
-            this.enemySpawner.SetWorld(this);
         }
 
         public World(IEnemySpawner enemySpawner): this(enemySpawner, new Size(100, 100)) {

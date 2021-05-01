@@ -1,25 +1,23 @@
 ﻿#nullable enable
 
-using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Galaga.Entity;
 
 namespace Galaga {
     public class GameRenderer {
-        private readonly Game.Game game;
+        private readonly Game.GameManager manager;
         private readonly Control control;
 
         private readonly ImageResources resources = new ImageResources();
 
-        public GameRenderer(Control form, Game.Game game) {
+        public GameRenderer(Control form, Game.GameManager manager) {
             control = form;
-            this.game = game;
+            this.manager = manager;
         }
 
         public void Draw(Graphics graphics) {
-            var world = game.GetWorld();
-            if (world == null) return;
+            var world = manager.GetWorld();
 
             var entities = world.EntityManager.Entities;
 

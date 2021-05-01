@@ -10,24 +10,24 @@ namespace Galaga.Game {
     }
 
     public class EnemySpawnerImpl: IEnemySpawner {
-        private IEnemySpawnerStrategy? _enemySpawnerStrategy;
-        private World? _world;
+        private IEnemySpawnerStrategy? enemySpawnerStrategy;
+        private World? world;
 
         public EnemySpawnerImpl(IEnemySpawnerStrategy? enemySpawnerStrategy = null) {
-            _enemySpawnerStrategy = enemySpawnerStrategy;
+            this.enemySpawnerStrategy = enemySpawnerStrategy;
         }
 
-        public void SetWorld(World world) {
-            _world = world;
+        public void SetWorld(World w) {
+            this.world = w;
         }
 
         public IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick) {
-            if (_world == null) return new Entity.Entity[0];
-            return _enemySpawnerStrategy?.GetSpawnEntities(currentTick, _world) ?? new Entity.Entity[0];
+            if (world == null) return new Entity.Entity[0];
+            return enemySpawnerStrategy?.GetSpawnEntities(currentTick, world) ?? new Entity.Entity[0];
         }
 
-        public void SetEnemySpawnerStrategy(IEnemySpawnerStrategy enemySpawnerStrategy) {
-            _enemySpawnerStrategy = enemySpawnerStrategy;
+        public void SetEnemySpawnerStrategy(IEnemySpawnerStrategy strategy) {
+            this.enemySpawnerStrategy = strategy;
         }
     }
 

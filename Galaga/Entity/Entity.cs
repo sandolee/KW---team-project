@@ -20,20 +20,18 @@ namespace Galaga.Entity {
     
     public abstract class Entity {
         public Position Position;
-        public World World;
+        public readonly World World;
 
-        private int _health;
+        public int Health { get; private set; }
 
-        public int Health => _health;
-
-        private Size _size;
-        public Size Size => _size;
+        private readonly Size size;
+        public Size Size => size;
 
         protected Entity(Position position, World world, Size size, int health) {
             Position = position;
             World = world;
-            _health = health;
-            _size = size;
+            this.Health = health;
+            this.size = size;
         }
         
         protected Entity(Position position, World world, int health): this(position, world, new Size(1, 1), health) {
@@ -44,7 +42,7 @@ namespace Galaga.Entity {
         }
 
         public void Attack(int damage) {
-            _health -= damage;
+            Health -= damage;
         }
 
         public abstract void OnTick(int currentTick);

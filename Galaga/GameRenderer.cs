@@ -7,24 +7,24 @@ using Galaga.Entity;
 
 namespace Galaga {
     public class GameRenderer {
-        private readonly Game.Game _game;
-        private readonly Control _control;
+        private readonly Game.Game game;
+        private readonly Control control;
 
-        private readonly ImageResources _resources = new ImageResources();
+        private readonly ImageResources resources = new ImageResources();
 
         public GameRenderer(Control form, Game.Game game) {
-            _control = form;
-            _game = game;
+            control = form;
+            this.game = game;
         }
 
         public void Draw(Graphics graphics) {
-            var world = _game.GetWorld();
+            var world = game.GetWorld();
             if (world == null) return;
 
             var entities = world.EntityManager.Entities;
 
-            float width = _control.DisplayRectangle.Right - _control.DisplayRectangle.Left;
-            float height = _control.DisplayRectangle.Bottom - _control.DisplayRectangle.Top;
+            float width = control.DisplayRectangle.Right - control.DisplayRectangle.Left;
+            float height = control.DisplayRectangle.Bottom - control.DisplayRectangle.Top;
 
             var factorWidth = width / world.Size.Width;
             var factorHeight = height / world.Size.Height;
@@ -35,13 +35,13 @@ namespace Galaga {
                 switch (entity)
                 {
                     case Enemy enemy:
-                        graphics.DrawImage(_resources.Enemy, EntityToRect(enemy,factorWidth, factorHeight));
+                        graphics.DrawImage(resources.Enemy, EntityToRect(enemy,factorWidth, factorHeight));
                         break;
                     case Ammo ammo:
-                        graphics.DrawImage(_resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));
+                        graphics.DrawImage(resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));
                         break;
                     case Player player:
-                        graphics.DrawImage(_resources.Player, EntityToRect(player, factorWidth, factorHeight));
+                        graphics.DrawImage(resources.Player, EntityToRect(player, factorWidth, factorHeight));
                         break;
                 }
             }

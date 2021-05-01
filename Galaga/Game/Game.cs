@@ -2,29 +2,29 @@
 
 namespace Galaga.Game {
     public class Game {
-        private IGameDelegate? _gameDelegate;
-        private int _stage = 0;
+        private IGameDelegate? gameDelegate;
+        private int stage = 0;
 
         public Game(IGameDelegate? gameDelegate = null) {
-            _gameDelegate = gameDelegate;
+            this.gameDelegate = gameDelegate;
         }
 
-        public void SetStage(int stage) {
-            _stage = stage;
+        public void SetStage(int value) {
+            this.stage = value;
             
             // TODO set IGameDelegate, IEnemySpawner to match stage value
         }
 
-        private void SetGameDelegate(IGameDelegate gameDelegate) {
-            _gameDelegate = gameDelegate;
+        private void SetGameDelegate(IGameDelegate gd) {
+            this.gameDelegate = gd;
         }
 
         public void OnTick(int currentTick) {
-            _gameDelegate?.OnTick(currentTick);
+            gameDelegate?.OnTick(currentTick);
         }
 
         public World? GetWorld() {
-            return _gameDelegate?.GetWorld();
+            return gameDelegate?.GetWorld();
         }
     }
 
@@ -35,18 +35,18 @@ namespace Galaga.Game {
     }
 
     public class SimpleGameDelegate : IGameDelegate {
-        private World _world;
+        private World world;
 
         public SimpleGameDelegate(World world) {
-            _world = world;
+            this.world = world;
         }
         
         public World GetWorld() {
-            return _world;
+            return world;
         }
 
         public void OnTick(int currentTick) {
-            _world.OnTick(currentTick);
+            world.OnTick(currentTick);
         }
     }
 }

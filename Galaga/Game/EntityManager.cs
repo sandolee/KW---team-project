@@ -6,8 +6,13 @@ using System.Collections.ObjectModel;
 namespace Galaga.Game {
     public class EntityManager {
         private readonly List<Entity.Entity> _entities = new List<Entity.Entity>();
-        public ReadOnlyCollection<Entity.Entity> Entities => _entities.AsReadOnly();
 
+        public ReadOnlyCollection<Entity.Entity> Entities;
+
+        public EntityManager() {
+            Entities = _entities.AsReadOnly();
+        }
+        
         public delegate void OnEntityKillDelegate(Entity.Entity entity);
         public readonly List<OnEntityKillDelegate> OnEntityKill = new List<OnEntityKillDelegate>();
 

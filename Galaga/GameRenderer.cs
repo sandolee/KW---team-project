@@ -3,21 +3,23 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Galaga.Entity;
+using Galaga.Game;
 
 namespace Galaga {
     public class GameRenderer {
-        private readonly Game.GameManager manager;
+        private readonly GameManager manager;
         private readonly Control control;
 
         private readonly ImageResources resources = new ImageResources();
 
-        public GameRenderer(Control form, Game.GameManager manager) {
+        public GameRenderer(Control form, GameManager manager) {
             control = form;
             this.manager = manager;
         }
 
         public void Draw(Graphics graphics) {
             // TODO GameManager.State에 따라 다른 형태의 화면 표시가 필요함
+            
             var world = manager.GetWorld();
 
             var entities = world.EntityManager.Entities;
@@ -28,6 +30,15 @@ namespace Galaga {
             var factorWidth = width / world.Size.Width;
             var factorHeight = height / world.Size.Height;
             graphics.FillRectangle(Brushes.Black, 0, 0, world.Size.Width * factorWidth, world.Size.Height * factorHeight);
+            graphics.DrawString($@"Game state: {manager.State switch {
+                PlayingState _ => "Playing",
+                PausedState _ => "Paused",
+                CompleteState _ => "Complete",
+                CompleteAllState _ => "CompleteAll",
+                IntermediateState _ => "Intermediate",
+                GameOverState _ => "GameOver",
+                _ => "Else"
+            }}", new Font("Arial", 16), Brushes.White, 0, 0);
 
             foreach (var entity in entities)
             {

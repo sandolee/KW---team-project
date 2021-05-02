@@ -151,7 +151,7 @@ namespace Galaga.Game {
 				manager.State = new GameOverState(manager);
 			} else {
 				if (!HasGameCleared()) return;
-				
+
 				if (manager.Stage >= manager.GetMaxStage()) {
 					// 모든 스테이지를 클리어
 					manager.State = new CompleteAllState(manager);
@@ -169,9 +169,9 @@ namespace Galaga.Game {
 						manager.State = new IntermediateState(manager);
 					}
 				};
-					
+
 				manager.State = nextState;
-					
+
 				manager.SetStage(manager.Stage + 1);
 			}
 		}

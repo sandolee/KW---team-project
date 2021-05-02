@@ -76,12 +76,12 @@ namespace Galaga.Game {
 	}
 
 	class PlayingState : IGameState {
-		private GameManager manager;
+		private readonly GameManager manager;
 		
 		public PlayingState(GameManager manager) {
 			this.manager = manager;
 		}
-		
+
 		public void Start() {
 			// no op
 		}
@@ -100,7 +100,7 @@ namespace Galaga.Game {
 	}
 
 	class PausedState : IGameState {
-		private GameManager manager;
+		private readonly GameManager manager;
 
 		public PausedState(GameManager manager) {
 			this.manager = manager;
@@ -124,12 +124,12 @@ namespace Galaga.Game {
 	}
 
 	class IntermediateState : IGameState {
-		private GameManager manager;
+		private readonly GameManager manager;
 		
 		public IntermediateState(GameManager manager) {
 			this.manager = manager;
 		}
-		
+
 		public void Start() {
 			manager.State = new PlayingState(manager);
 		}
@@ -148,6 +148,12 @@ namespace Galaga.Game {
 	}
 
 	class GameOverState : IGameState {
+		private readonly GameManager manager;
+
+		public GameOverState(GameManager manager) {
+			this.manager = manager;
+		}
+
 		public void Start() {
 			throw new NotSupportedException("could not start from game over state");
 		}
@@ -166,6 +172,12 @@ namespace Galaga.Game {
 	}
 
 	class CompleteState : IGameState {
+		private readonly GameManager manager;
+
+		public CompleteState(GameManager manager) {
+			this.manager = manager;
+		}
+
 		public void Start() {
 			
 		}

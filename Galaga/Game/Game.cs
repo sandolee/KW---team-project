@@ -10,7 +10,7 @@ namespace Galaga.Game {
         public World GetWorld();
 
         public Player GetPlayer();
-        
+
         public void OnTick(int currentTick);
     }
 

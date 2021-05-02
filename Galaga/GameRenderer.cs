@@ -43,7 +43,6 @@ namespace Galaga {
                         break;
                 }
             }
-
         }
 
         private static Point PositionToPoint(Position position, float factor) {

@@ -11,10 +11,9 @@ namespace Galaga.Game {
 
 		public int Stage { get; private set; }
 
-		public GameManager(IGame game) {
-			Game = game;
-
+		public GameManager() {
 			Stage = 1;
+			Game = GetGameByStage(Stage);
 
 			State = new IntermediateState(this);
 		}
@@ -24,13 +23,17 @@ namespace Galaga.Game {
 		}
 
 		public void SetStage(int newStage) {
-			Game = newStage switch {
-				1 => new Stage1Game(),
-				_ => throw new ArgumentOutOfRangeException(
-					$"stage cannot be larger than {GetMaxStage()}, given {newStage}")
-			};
+			Game = GetGameByStage(newStage);
 
 			Stage = newStage;
+		}
+
+		private IGame GetGameByStage(int stage) {
+			return stage switch {
+				1 => new Stage1Game(),
+				_ => throw new ArgumentOutOfRangeException(
+					$"stage cannot be larger than {GetMaxStage()}, given {stage}")
+			};
 		}
 
 		// 스테이지가 바뀔 때마다 Game 인스턴스가 바뀜에 따라 Player 인스턴스도 바뀌기 때문에

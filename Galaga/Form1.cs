@@ -13,9 +13,7 @@ namespace Galaga {
         public Form1() {
             InitializeComponent();
             
-            var game = new Stage1Game();
-
-            manager = new GameManager(game);
+            manager = new GameManager();
             gameRenderer = new GameRenderer(this, manager);
 
             var timer = new Timer {

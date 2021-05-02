@@ -27,6 +27,8 @@ namespace Galaga.FileAccess
         static String directoryPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "PlayerInfo"));
         public static List<Account> ReadInfo()
         {
+            CreateInfo();
+
             StreamReader sr = new StreamReader(path);
             List<Account> accounts = new List<Account>();
             var csvList = new List<string[]>();
@@ -56,6 +58,8 @@ namespace Galaga.FileAccess
 
         public static void WriteInfo(String ID, String PW)
         {
+            CreateInfo();
+
             try
             {
                 File.AppendAllText(path, ID + ",0,0," + PW+"\n");
@@ -71,12 +75,7 @@ namespace Galaga.FileAccess
             if (!Exists(directoryPath))
             {
                 CreateDirectory(directoryPath);
-
-                if (!File.Exists(path))
-                {
-                    FileStream stream = File.Create(path);
-                    stream.Close();
-                }
+                FileStream stream = File.Create(path);
             }
         }
     }

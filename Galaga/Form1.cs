@@ -27,6 +27,8 @@ namespace Galaga {
             // 테스트적 생성
             Enemy enemy = new TestEnemy(manager.GetWorld());
             world.EntityManager.AddEntity(enemy);
+            
+            manager.Start();
         }
 
         private void OnTimerTick(object obj, EventArgs args) {
@@ -42,19 +44,16 @@ namespace Galaga {
         }
         
         private void Form1_KeyDown(object sender, KeyEventArgs e) {
-            var player = manager.GetPlayer();
-            
             switch (e.KeyCode)
             {
                 case Keys.Right:
-                    player.Move(5,0);
+                    manager.MovePlayer(5, 0);
                     break;
                 case Keys.Left:
-                    player.Move(-5, 0);
+                    manager.MovePlayer(-5, 0);
                     break;
                 case Keys.Space:
-                    player.World.EntityManager.AddEntity(new Ammo(new Position(player.Position.X + 4, player.Position.Y), player.World, 1));
-                    player.World.EntityManager.AddEntity(new Ammo(new Position(player.Position.X - 4, player.Position.Y), player.World, 1));
+                    manager.Shoot();
                     break;
             }
         }

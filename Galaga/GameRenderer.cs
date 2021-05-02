@@ -17,6 +17,7 @@ namespace Galaga {
         }
 
         public void Draw(Graphics graphics) {
+            // TODO GameManager.State에 따라 다른 형태의 화면 표시가 필요함
             var world = manager.GetWorld();
 
             var entities = world.EntityManager.Entities;

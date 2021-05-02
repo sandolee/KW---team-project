@@ -33,7 +33,7 @@ namespace Galaga.Entity {
             this.Health = health;
             this.size = size;
         }
-        
+
         protected Entity(Position position, World world, int health): this(position, world, new Size(1, 1), health) {
             
         }
@@ -60,6 +60,5 @@ namespace Galaga.Entity {
                 return true;
 
         }
-               
     }
 }

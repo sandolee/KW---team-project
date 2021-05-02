@@ -5,8 +5,6 @@ using Galaga.Entity;
 
 namespace Galaga.Game {
     public interface IGame {
-        // TODO Add registering game over listener
-        
         public World GetWorld();
 
         public Player GetPlayer();

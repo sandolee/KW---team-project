@@ -20,6 +20,11 @@ namespace Galaga.Entity
                 Position.X += x;
         }
 
+        public void Shoot() {
+            World.EntityManager.AddEntity(new Ammo(new Position(Position.X + 4, Position.Y), World, 1));
+            World.EntityManager.AddEntity(new Ammo(new Position(Position.X - 4, Position.Y), World, 1));
+        }
+
         public Player(Position position, World world, int health) : base(
             position,
             world,

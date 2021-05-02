@@ -9,6 +9,12 @@ namespace Galaga.Game {
 
         public Player GetPlayer();
 
+        // 플레이어가 게임을 클리어 했는지 여부
+        public bool IsCleared();
+
+        // 플레이어가 패배했는지 여부를 반환
+        public bool IsOver();
+
         public void OnTick(int currentTick);
     }
 
@@ -23,6 +29,10 @@ namespace Galaga.Game {
             world.EntityManager.AddEntity(player);
         }
 
+        public abstract bool IsCleared();
+
+        public abstract bool IsOver();
+
         public World GetWorld() {
             return world;
         }
@@ -36,9 +46,17 @@ namespace Galaga.Game {
         }
     }
 
-    class Stage1Game : BaseGame {
+    internal class Stage1Game : BaseGame {
         public Stage1Game() : base(new World(new EntitySpawner())) {
             
+        }
+
+        public override bool IsCleared() {
+            return false;
+        }
+
+        public override bool IsOver() {
+            return false;
         }
 
         // Stage 1의 엔티티 소환을 관리

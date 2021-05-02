@@ -146,10 +146,8 @@ namespace Galaga.Game {
 		public override void Tick(int currentTick) {
 			manager.Game.OnTick(currentTick);
 
-			var player = manager.Game.GetPlayer();
-			if (player.Health <= 0) {
-				manager.State = new GameOverState(manager);
-			} else {
+			var game = manager.Game;
+			if (game.IsCleared()) {
 				if (!HasGameCleared()) return;
 
 				if (manager.Stage >= manager.GetMaxStage()) {
@@ -173,6 +171,8 @@ namespace Galaga.Game {
 				manager.State = nextState;
 
 				manager.SetStage(manager.Stage + 1);
+			} else if (game.IsOver()) {
+				manager.State = new GameOverState(manager);
 			}
 		}
 

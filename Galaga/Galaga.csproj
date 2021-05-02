@@ -71,7 +71,7 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="GameRenderer.cs" />
-    <Compile Include="Game\IEnemySpawner.cs" />
+    <Compile Include="Game\IEntitySpawner.cs" />
     <Compile Include="Game\EntityManager.cs" />
     <Compile Include="Game\Game.cs" />
 	<Compile Include="Game\GameManager.cs" />

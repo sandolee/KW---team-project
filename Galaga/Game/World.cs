@@ -2,25 +2,25 @@
 
 namespace Galaga.Game {
     public class World {
-        private readonly IEnemySpawner enemySpawner;
+        private readonly IEntitySpawner entitySpawner;
         public readonly Size Size;
 
         public EntityManager EntityManager { get; }
 
-        public World(IEnemySpawner enemySpawner, Size size) {
+        public World(IEntitySpawner entitySpawner, Size size) {
             EntityManager = new EntityManager();
 
             Size = size;
 
-            this.enemySpawner = enemySpawner;
+            this.entitySpawner = entitySpawner;
         }
 
-        public World(IEnemySpawner enemySpawner): this(enemySpawner, new Size(100, 100)) {
+        public World(IEntitySpawner entitySpawner): this(entitySpawner, new Size(100, 100)) {
             
         }
 
         public void OnTick(int currentTick) {
-            foreach (var entity in enemySpawner.GetSpawnEntities(currentTick)) {
+            foreach (var entity in entitySpawner.GetSpawnEntities(currentTick)) {
                 EntityManager.AddEntity(entity);
             }
 

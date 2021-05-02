@@ -7,7 +7,11 @@ namespace Galaga.Entity
 {
     public class Player : Entity
     {
-        public Player(World world) : this(new Position(0, 0), world, 10){}
+        public Player(World world) :
+            this(new Position(world.Size.Width / 2, world.Size.Height - 5), world, 10) {
+            
+        }
+        
         public void Move(int x, int y)
         {
             if (x>0 && this.Position.X <= World.Size.Width - this.Size.Width)
@@ -17,12 +21,13 @@ namespace Galaga.Entity
         }
 
         public Player(Position position, World world, int health) : base(
-            new Position(world.Size.Width / 2, (int)(world.Size.Height-5)),
+            position,
             world,
             new Size(10, 10),
             health
-        )
-        { }
+        ) {
+            
+        }
 
         public override void OnTick(int currentTick) {
             

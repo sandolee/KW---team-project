@@ -43,7 +43,6 @@ namespace Galaga {
         
         private void Form1_KeyDown(object sender, KeyEventArgs e) {
             var player = manager.GetPlayer();
-            var world = manager.GetWorld();
             
             switch (e.KeyCode)
             {

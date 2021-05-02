@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 
 namespace Galaga.Game {
-    public interface IEnemySpawner {
+    public interface IEntitySpawner {
         IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick);
     }
 }

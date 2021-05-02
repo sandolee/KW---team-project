@@ -39,12 +39,12 @@ namespace Galaga.Game {
     }
 
     class Stage1Game : BaseGame {
-        public Stage1Game() : base(new World(new EnemySpawner())) {
+        public Stage1Game() : base(new World(new EntitySpawner())) {
             
         }
 
         // Stage 1의 엔티티 소환을 관리
-        private class EnemySpawner : IEnemySpawner {
+        private class EntitySpawner : IEntitySpawner {
             public IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick) {
                 return new Entity.Entity[0];
             }

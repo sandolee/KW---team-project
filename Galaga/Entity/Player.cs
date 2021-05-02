@@ -10,10 +10,14 @@ namespace Galaga.Entity
         public Player(World world) : this(new Position(0, 0), world, 10){}
         public void Move(int x, int y)
         {
-            if (x>0 && this.Position.X <= World.Size.Width - this.Size.Width)
+            if (x > 0 && this.Position.X < World.Size.Width - this.Size.Width / 2)
                 Position.X += x;
-            if ( x<0&& this.Position.X >= this.Size.Width)
+            else if (x < 0 && this.Position.X > this.Size.Width / 2)
                 Position.X += x;
+            //else if (y < 0 && this.Position.Y > this.Size.Height / 2)
+            //    Position.Y += y;
+            //else if (y > 0 && this.Position.Y < World.Size.Height - this.Size.Height / 2)
+            //    Position.Y += y;
         }
 
         public Player(Position position, World world, int health) : base(
@@ -23,9 +27,30 @@ namespace Galaga.Entity
             health
         )
         { }
+        private int recordTic;
+        public int RecordTic
+        {
+            get => recordTic;
+            set => recordTic = value;
+        }
 
         public override void OnTick(int currentTick) {
-            
+            foreach (var entity in World.EntityManager.Entities)
+            {
+                if (entity is Enemy enemy)
+                {
+                    if (this.EntityCollisionCheck(enemy))
+                    {
+                        Attack(1);
+                    }
+                }
+
+            }
+
+            if (GodMode && currentTick > RecordTic + 50)
+            {
+                GodMode = false;
+            }
         }
     }
 }

@@ -43,9 +43,14 @@ namespace Galaga {
                     case Player player:
                         graphics.DrawImage(_resources.Player, EntityToRect(player, factorWidth, factorHeight));
                         break;
+                    case Heart heart:
+                        graphics.DrawImage(_resources.Heart, EntityToRect(heart, factorWidth, factorHeight));
+                        break;
+                    case Portion portion:
+                        graphics.DrawImage(_resources.Portion, EntityToRect(portion, factorWidth, factorHeight));
+                        break;
                 }
             }
-
         }
 
         private static Point PositionToPoint(Position position, float factor) {
@@ -69,5 +74,7 @@ namespace Galaga {
         public readonly Image Ammo = Properties.Resources.ammo;
         public readonly Image Enemy = Properties.Resources.Enemy;
         public readonly Image Player = Properties.Resources.Entity1;
+        public readonly Image Heart = Properties.Resources.heart;
+        public readonly Image Portion = Properties.Resources.potion;
     }
 }

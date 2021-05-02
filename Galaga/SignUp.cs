@@ -21,6 +21,7 @@ namespace Galaga
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            FileAccess.FileAccess.CreateInfo();
             var userInfo = FileAccess.FileAccess.ReadInfo();
 
             if (String.Equals(txtID.Text, String.Empty) || String.Equals(txtPW.Text, String.Empty))

@@ -1,5 +1,4 @@
-﻿using Galaga.Ui;
-
+﻿
 namespace Galaga
 {
     partial class SignUp

@@ -30,8 +30,7 @@ namespace Galaga {
 
             graphics.FillRectangle(Brushes.Black, 0, 0, world.Size.Width * factor, world.Size.Height * factor);
             Pen pen = new Pen(Brushes.DeepSkyBlue);
-            
-
+ 
             foreach (var entity in entities) {
                 switch (entity) {
                     case Enemy enemy:
@@ -45,8 +44,7 @@ namespace Galaga {
                         
                         graphics.DrawRectangle(pen, (int) ((player.Position.X - player.Size.Width / 2f) * factor), (int) ((player.Position.Y - player.Size.Height / 2f) * factor*0.9), 
                                                 (int) (player.Size.Width * factor),  (int) (player.Size.Height * factor/2));
-                        //graphics.DrawRectangle(pen, EntityToRect1(player, factor));
-                        
+                      
                         for(int i=0; i<player.Health; i++){
       
                             graphics.FillRectangle(Brushes.Red, (int) ((player.Position.X - player.Size.Width / 2f) * factor + player.Size.Width * factor/10*i), (int) ((player.Position.Y - player.Size.Height / 2f) * factor*0.9), 
@@ -54,13 +52,6 @@ namespace Galaga {
                             graphics.FillRectangle(Brushes.Black, (int) ((player.Position.X - player.Size.Width / 2f) * factor + player.Size.Width * factor/10*player.Health), (int) ((player.Position.Y - player.Size.Height / 2f) * factor*0.9), 
                                                             (int) (player.Size.Width * factor/5),  (int) (player.Size.Height * factor/2));
                         }
-                       
-                        /*graphics.FillRectangle(Brushes.Black, (int) ((player.Position.X - player.Size.Width / 2f) * factor + player.Size.Width * factor/10*player.Health), (int) ((player.Position.Y - player.Size.Height / 2f) * factor*0.9), 
-                                                            (int) (player.Size.Width * factor/5),  (int) (player.Size.Height * factor/2));
-                        */
-
-                        
-
                         break;
                 }
                 
@@ -80,18 +71,6 @@ namespace Galaga {
                 (int) ((entity.Position.Y - height / 2f) * factor),
                 (int) (width * factor),
                 (int) (height * factor)
-            );
-        }
-
-        private static Rectangle EntityToRect1(Entity.Entity entity, float factor) {
-            var width = entity.Size.Width;
-            var height = entity.Size.Height;
-
-            return new Rectangle(
-                (int) ((entity.Position.X - width / 2f) * factor),
-                (int) ((entity.Position.Y - height / 2f) * factor*0.9),
-                (int) (width * factor),
-                (int) (height * factor/2)
             );
         }
     }

@@ -21,13 +21,7 @@ namespace Galaga.Entity {
     public abstract class Entity {
         public Position Position;
         public World World;
-
-        private int _health;
-
-        public int Health {
-            get => _health;
-            set => _health = value;
-        }
+        public int Health { get; set; }
 
         private bool godMode = false;
         public bool GodMode
@@ -42,7 +36,7 @@ namespace Galaga.Entity {
         protected Entity(Position position, World world, Size size, int health) {
             Position = position;
             World = world;
-            _health = health;
+            Health = health;
             _size = size;
         }
         
@@ -55,7 +49,7 @@ namespace Galaga.Entity {
 
         public void Attack(int damage) {
             if (!godMode)
-                _health -= damage;
+                Health -= damage;
         }
 
         public abstract void OnTick(int currentTick);

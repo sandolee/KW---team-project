@@ -59,6 +59,7 @@ namespace Galaga.Entity {
                 return false;
             
             else
+                
                 return true;
 
         }

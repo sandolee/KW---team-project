@@ -44,14 +44,15 @@ namespace Galaga {
                         
                         graphics.DrawRectangle(pen, (int) ((player.Position.X - player.Size.Width / 2f) * factor), (int) ((player.Position.Y - player.Size.Height / 2f) * factor*0.9), 
                                                 (int) (player.Size.Width * factor),  (int) (player.Size.Height * factor/2));
-                      
-                        for(int i=0; i<player.Health; i++){
-      
-                            graphics.FillRectangle(Brushes.Red, (int) ((player.Position.X - player.Size.Width / 2f) * factor + player.Size.Width * factor/10*i), (int) ((player.Position.Y - player.Size.Height / 2f) * factor*0.9), 
-                                                    (int) (player.Size.Width * factor/5),  (int) (player.Size.Height * factor/2));
-                            graphics.FillRectangle(Brushes.Black, (int) ((player.Position.X - player.Size.Width / 2f) * factor + player.Size.Width * factor/10*player.Health), (int) ((player.Position.Y - player.Size.Height / 2f) * factor*0.9), 
-                                                            (int) (player.Size.Width * factor/5),  (int) (player.Size.Height * factor/2));
-                        }
+                                              
+                        graphics.FillRectangle(Brushes.White, (int) ((player.Position.X - player.Size.Width / 2f) * factor ), (int) ((player.Position.Y - player.Size.Height / 2f) * factor*0.9), 
+                                                            (int) (player.Size.Width * factor),  (int) (player.Size.Height * factor/2));
+                                                
+                        graphics.FillRectangle(Brushes.Red, (int) ((player.Position.X - player.Size.Width / 2f) * factor + player.Size.Width * factor/10*player.Health), (int) ((player.Position.Y - player.Size.Height / 2f) * factor*0.9), 
+                                                    (int) (player.Size.Width * factor/10*(10-player.Health)),  (int) (player.Size.Height * factor/2));
+                            
+                        
+
                         break;
                 }
                 

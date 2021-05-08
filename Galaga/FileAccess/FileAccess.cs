@@ -23,8 +23,9 @@ namespace Galaga.FileAccess
     }
     static class FileAccess
     {
-        static String path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "PlayerInfo", "PlayerInfo.csv"));
         static String directoryPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "PlayerInfo"));
+        static String path = Path.GetFullPath(Path.Combine(directoryPath, "PlayerInfo.csv"));
+        
         public static List<Account> ReadInfo()
         {
             CreateInfo();

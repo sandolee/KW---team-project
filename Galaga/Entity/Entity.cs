@@ -17,18 +17,36 @@ namespace Galaga.Entity {
             return Math.Sqrt((this.X - other.X) * (this.X - other.X) + (this.Y - other.Y) * (this.Y - other.Y));
         }
     }
+    public class GodMode
+    {
+        public bool IsGodMode { get; set; }
+        public  int GodModeStartTic { get; set; }
+        public GodMode()
+        {
+            IsGodMode = false;
+            GodModeStartTic = 0;
+        }
+        public void StartGodMode(int tick)
+        {
+            IsGodMode = true;
+            GodModeStartTic = tick;
+        }
+        public void EndGodMode(int tick)
+        {
+            if (IsGodMode && tick > GodModeStartTic + 50)
+            {
+                IsGodMode = false;
+                GodModeStartTic = 0;
+            }
+        }
+
+    }
     
     public abstract class Entity {
         public Position Position;
         public World World;
+        public GodMode GodMode;
         public int Health { get; set; }
-
-        private bool godMode = false;
-        public bool GodMode
-        {
-            get => godMode;
-            set => godMode = value;
-        }
 
         private Size _size;
         public Size Size => _size;
@@ -38,6 +56,7 @@ namespace Galaga.Entity {
             World = world;
             Health = health;
             _size = size;
+            GodMode = new GodMode();
         }
         
         protected Entity(Position position, World world, int health): this(position, world, new Size(1, 1), health) {
@@ -48,7 +67,7 @@ namespace Galaga.Entity {
         }
 
         public void Attack(int damage) {
-            if (!godMode)
+            if (!GodMode.IsGodMode)
                 Health -= damage;
         }
 
@@ -78,6 +97,12 @@ namespace Galaga.Entity {
 
             else return true;
         }
+
+        public void Heal(int heal)
+        {
+            Health += heal;
+        }
                
     }
+
 }

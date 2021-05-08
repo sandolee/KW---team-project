@@ -27,7 +27,6 @@ namespace Galaga.Entity
             health
         )
         { }
-        public int GodModeStartTic { get; set; }
 
         public override void OnTick(int currentTick) {
             foreach (var entity in World.EntityManager.Entities)
@@ -43,10 +42,7 @@ namespace Galaga.Entity
             }
 
             //50 tic 이후로 godMode 해제 
-            if (GodMode && currentTick > GodModeStartTic + 50)
-            {
-                GodMode = false;
-            }
+            GodMode.EndGodMode(currentTick);
         }
     }
 }

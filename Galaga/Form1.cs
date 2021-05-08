@@ -58,7 +58,7 @@ namespace Galaga {
             _gameRenderer.Draw(e.Graphics);
 
             //아이템 테스트를 위한 hp 표시 label 
-            label.Text = _player.Health.ToString()+" "+_player.GodModeStartTic;
+            label.Text = _player.Health.ToString()+" "+_player.GodMode.GodModeStartTic;
             label.ForeColor = System.Drawing.Color.White;
             label.BackColor = System.Drawing.Color.Transparent;
         }

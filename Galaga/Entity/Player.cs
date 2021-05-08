@@ -29,7 +29,7 @@ namespace Galaga.Entity
 				if(entity is Enemy enemy) {
 					if(EntityCollisionCheck(enemy) == true){
 						enemy.Attack(1);
-                        this.Attack(1);
+                            this.Attack(1);
 					}
 				}		
 			}

@@ -1,5 +1,4 @@
 ﻿using Galaga.Game;
-using System.Windows.Forms;
 
 #nullable enable
 
@@ -43,12 +42,11 @@ namespace Galaga.Entity
             {
                 if (entity is Enemy enemy)
                 {
-                    if (this.EntityCollisionCheck(enemy))
-                    {
+                    if (this.EntityCollisionCheck(enemy)) {
+                        enemy.Attack(1);
                         Attack(1);
                     }
                 }
-
             }
 
             //50 tic 이후로 godMode 해제 

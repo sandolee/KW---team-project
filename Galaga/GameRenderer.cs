@@ -40,6 +40,8 @@ namespace Galaga {
                 _ => "Else"
             }}", new Font("Arial", 16), Brushes.White, 0, 0);
 
+            graphics.FillRectangle(Brushes.Black, 0, 0, world.Size.Width * factorWidth, world.Size.Height * factorHeight);
+            Pen pen = new Pen(Brushes.DeepSkyBlue);
             foreach (var entity in entities)
             {
                 switch (entity)
@@ -52,6 +54,16 @@ namespace Galaga {
                         break;
                     case Player player:
                         graphics.DrawImage(Resources.Player, EntityToRect(player, factorWidth, factorHeight));
+                        
+                        graphics.DrawRectangle(pen, (int) ((player.Position.X - player.Size.Width / 2f) * factorWidth), (int) ((player.Position.Y - player.Size.Height / 2f) * factorHeight*0.9), 
+                            (int) (player.Size.Width * factorWidth),  (int) (player.Size.Height * factorHeight/2));
+                                              
+                        graphics.FillRectangle(Brushes.White, (int) ((player.Position.X - player.Size.Width / 2f) * factorWidth ), (int) ((player.Position.Y - player.Size.Height / 2f) * factorHeight*0.9), 
+                            (int) (player.Size.Width * factorWidth),  (int) (player.Size.Height * factorHeight/2));
+                                                
+                        graphics.FillRectangle(Brushes.Red, (int) ((player.Position.X - player.Size.Width / 2f) * factorWidth + player.Size.Width * factorWidth/10*player.Health), (int) ((player.Position.Y - player.Size.Height / 2f) * factorHeight*0.9), 
+                            (int) (player.Size.Width * factorWidth/10*(10-player.Health)),  (int) (player.Size.Height * factorHeight/2));
+
                         break;
                     case Heart heart:
                         graphics.DrawImage(Resources.Heart, EntityToRect(heart, factorWidth, factorHeight));
@@ -60,6 +72,7 @@ namespace Galaga {
                         graphics.DrawImage(Resources.Potion, EntityToRect(potion, factorWidth, factorHeight));
                         break;
                 }
+                
             }
         }
 

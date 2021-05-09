@@ -12,7 +12,7 @@ namespace Galaga.Entity {
 	}
 
 	public class TestEnemy: Enemy{
-		public TestEnemy(World world) : this(new Position(0, 0), world, 10){}
+		public TestEnemy(World world) : this(new Position(0, 0), world, 1){}
 		
 		public TestEnemy(Position position, World world, int health) : base(
             position,

@@ -46,7 +46,7 @@ namespace Galaga {
                     case Heart heart:
                         graphics.DrawImage(_resources.Heart, EntityToRect(heart, factorWidth, factorHeight));
                         break;
-                    case Portion portion:
+                    case Poition portion:
                         graphics.DrawImage(_resources.Portion, EntityToRect(portion, factorWidth, factorHeight));
                         break;
                 }

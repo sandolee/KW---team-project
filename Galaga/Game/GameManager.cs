@@ -116,10 +116,10 @@ namespace Galaga.Game {
 
 	// 게임을 플레이 중인 상태
 	class PlayingState : BaseState {
-		private readonly GameManager manager;
+		private readonly GameManager _manager;
 		
 		public PlayingState(GameManager manager) {
-			this.manager = manager;
+			this._manager = manager;
 		}
 
 		public override void Start() {
@@ -127,52 +127,52 @@ namespace Galaga.Game {
 		}
 
 		public override void Stop() {
-			manager.State = new IntermediateState(manager);
+			_manager.State = new IntermediateState(_manager);
 		}
 
 		public override void Pause() {
-			manager.State = new PausedState(manager);
+			_manager.State = new PausedState(_manager);
 		}
 
 		public override void MovePlayer(int dx, int dy) {
-			manager.Game.GetPlayer().Move(dx, dy);
+			_manager.Game.GetPlayer().Move(dx, dy);
 		}
 
 		public override void Shoot() {
-			var player = manager.Game.GetPlayer();
+			var player = _manager.Game.GetPlayer();
 			player.Shoot();
 		}
 
 		public override void Tick(int currentTick) {
-			manager.Game.OnTick(currentTick);
+			_manager.Game.OnTick(currentTick);
 
-			var game = manager.Game;
+			var game = _manager.Game;
 			if (game.IsCleared()) {
 				if (!HasGameCleared()) return;
 
-				if (manager.Stage >= manager.GetMaxStage()) {
+				if (_manager.Stage >= _manager.GetMaxStage()) {
 					// 모든 스테이지를 클리어
-					manager.State = new CompleteAllState(manager);
+					_manager.State = new CompleteAllState(_manager);
 					return;
 				}
 
-				var nextState = new CompleteState(manager);
+				var nextState = new CompleteState(_manager);
 
 				var timer = new Timer {
 					Interval = 5000, // 5초 후에 스테이지 준비 상태로 변경
 					Enabled = true
 				};
 				timer.Elapsed += (sender, args) => {
-					if (manager.State == nextState) {
-						manager.State = new IntermediateState(manager);
+					if (_manager.State == nextState) {
+						_manager.State = new IntermediateState(_manager);
 					}
 				};
 
-				manager.State = nextState;
+				_manager.State = nextState;
 
-				manager.SetStage(manager.Stage + 1);
+				_manager.SetStage(_manager.Stage + 1);
 			} else if (game.IsOver()) {
-				manager.State = new GameOverState(manager);
+				_manager.State = new GameOverState(_manager);
 			}
 		}
 
@@ -186,18 +186,18 @@ namespace Galaga.Game {
 
 	// 일시정지 버튼 같은 것으로 인해 게임이 중단된 상태
 	public class PausedState : BaseState {
-		private readonly GameManager manager;
+		private readonly GameManager _manager;
 
 		internal PausedState(GameManager manager) {
-			this.manager = manager;
+			this._manager = manager;
 		}
 
 		public override void Start() {
-			manager.State = new PlayingState(manager);
+			_manager.State = new PlayingState(_manager);
 		}
 
 		public override void Stop() {
-			manager.State = new IntermediateState(manager);
+			_manager.State = new IntermediateState(_manager);
 		}
 
 		public override void Pause() {
@@ -211,14 +211,14 @@ namespace Galaga.Game {
 
 	// 스테이지 시작 전 또는 스테이지 종료 후 다음 게임을 시작하기 전 상태
 	public class IntermediateState : BaseState {
-		private readonly GameManager manager;
+		private readonly GameManager _manager;
 		
 		internal IntermediateState(GameManager manager) {
-			this.manager = manager;
+			this._manager = manager;
 		}
 
 		public override void Start() {
-			manager.State = new PlayingState(manager);
+			_manager.State = new PlayingState(_manager);
 		}
 
 		public override void Stop() {
@@ -236,10 +236,10 @@ namespace Galaga.Game {
 
 	// 스테이지 실패한 상태
 	public class GameOverState : BaseState {
-		private readonly GameManager manager;
+		private readonly GameManager _manager;
 
 		internal GameOverState(GameManager manager) {
-			this.manager = manager;
+			_manager = manager;
 		}
 
 		public override void Start() {
@@ -261,10 +261,10 @@ namespace Galaga.Game {
 
 	// 스테이지를 클리어 한 상태
 	public class CompleteState : BaseState {
-		private readonly GameManager manager;
+		private readonly GameManager _manager;
 
 		internal CompleteState(GameManager manager) {
-			this.manager = manager;
+			_manager = manager;
 		}
 
 		public override void Stop() {
@@ -282,10 +282,10 @@ namespace Galaga.Game {
 
 	// 게임의 모든 스테이지를 클리어한 상태
 	public class CompleteAllState : BaseState {
-		private readonly GameManager manager;
+		private readonly GameManager _manager;
 
 		internal CompleteAllState(GameManager manager) {
-			this.manager = manager;
+			_manager = manager;
 		}
 		
 		public override void Start() {

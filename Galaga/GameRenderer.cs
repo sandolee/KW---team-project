@@ -7,30 +7,30 @@ using Galaga.Game;
 
 namespace Galaga {
     public class GameRenderer {
-        private readonly GameManager manager;
-        private readonly Control control;
+        private readonly GameManager _manager;
+        private readonly Control _control;
 
-        private readonly ImageResources resources = new ImageResources();
+        private static readonly ImageResources Resources = new ImageResources();
 
         public GameRenderer(Control form, GameManager manager) {
-            control = form;
-            this.manager = manager;
+            _control = form;
+            this._manager = manager;
         }
 
         public void Draw(Graphics graphics) {
             // TODO GameManager.State에 따라 다른 형태의 화면 표시가 필요함
             
-            var world = manager.GetWorld();
+            var world = _manager.GetWorld();
 
             var entities = world.EntityManager.Entities;
 
-            float width = control.DisplayRectangle.Right - control.DisplayRectangle.Left;
-            float height = control.DisplayRectangle.Bottom - control.DisplayRectangle.Top;
+            float width = _control.DisplayRectangle.Right - _control.DisplayRectangle.Left;
+            float height = _control.DisplayRectangle.Bottom - _control.DisplayRectangle.Top;
 
             var factorWidth = width / world.Size.Width;
             var factorHeight = height / world.Size.Height;
             graphics.FillRectangle(Brushes.Black, 0, 0, world.Size.Width * factorWidth, world.Size.Height * factorHeight);
-            graphics.DrawString($@"Game state: {manager.State switch {
+            graphics.DrawString($@"Game state: {_manager.State switch {
                 PlayingState _ => "Playing",
                 PausedState _ => "Paused",
                 CompleteState _ => "Complete",
@@ -45,13 +45,13 @@ namespace Galaga {
                 switch (entity)
                 {
                     case Enemy enemy:
-                        graphics.DrawImage(resources.Enemy, EntityToRect(enemy,factorWidth, factorHeight));
+                        graphics.DrawImage(Resources.Enemy, EntityToRect(enemy,factorWidth, factorHeight));
                         break;
                     case Ammo ammo:
-                        graphics.DrawImage(resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));
+                        graphics.DrawImage(Resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));
                         break;
                     case Player player:
-                        graphics.DrawImage(resources.Player, EntityToRect(player, factorWidth, factorHeight));
+                        graphics.DrawImage(Resources.Player, EntityToRect(player, factorWidth, factorHeight));
                         break;
                 }
             }

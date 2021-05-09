@@ -5,16 +5,16 @@ using Galaga.Game;
 
 namespace Galaga {
     public partial class Form1 : Form {
-        private int tick;
+        private int _tick;
         
-        private readonly GameRenderer gameRenderer;
-        private readonly GameManager manager;
+        private readonly GameRenderer _gameRenderer;
+        private readonly GameManager _manager;
         
         public Form1() {
             InitializeComponent();
             
-            manager = new GameManager();
-            gameRenderer = new GameRenderer(this, manager);
+            _manager = new GameManager();
+            _gameRenderer = new GameRenderer(this, _manager);
 
             var timer = new Timer {
                 Interval = 50, Enabled = true,
@@ -23,16 +23,16 @@ namespace Galaga {
             timer.Start();
             KeyDown += Form1_KeyDown;
 
-            var world = manager.GetWorld();
+            var world = _manager.GetWorld();
             // 테스트적 생성
-            Enemy enemy = new TestEnemy(manager.GetWorld());
+            Enemy enemy = new TestEnemy(_manager.GetWorld());
             world.EntityManager.AddEntity(enemy);
             
-            manager.Start();
+            _manager.Start();
         }
 
         private void OnTimerTick(object obj, EventArgs args) {
-            manager.Tick(tick++);
+            _manager.Tick(_tick++);
 
             Invalidate();
         }
@@ -40,20 +40,20 @@ namespace Galaga {
         protected override void OnPaint(PaintEventArgs e) {
             base.OnPaint(e);
             
-            gameRenderer.Draw(e.Graphics);
+            _gameRenderer.Draw(e.Graphics);
         }
         
         private void Form1_KeyDown(object sender, KeyEventArgs e) {
             switch (e.KeyCode)
             {
                 case Keys.Right:
-                    manager.MovePlayer(5, 0);
+                    _manager.MovePlayer(5, 0);
                     break;
                 case Keys.Left:
-                    manager.MovePlayer(-5, 0);
+                    _manager.MovePlayer(-5, 0);
                     break;
                 case Keys.Space:
-                    manager.Shoot();
+                    _manager.Shoot();
                     break;
             }
         }

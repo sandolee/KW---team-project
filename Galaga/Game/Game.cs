@@ -19,14 +19,14 @@ namespace Galaga.Game {
     }
 
     public abstract class BaseGame : IGame {
-        private readonly World world;
-        private readonly Player player;
+        private readonly World _world;
+        private readonly Player _player;
 
         protected BaseGame(World world) {
-            this.world = world;
-            
-            player = new Player(world);
-            world.EntityManager.AddEntity(player);
+            this._world = world;
+
+            _player = new Player(world);
+            world.EntityManager.AddEntity(_player);
         }
 
         public abstract bool IsCleared();
@@ -34,15 +34,15 @@ namespace Galaga.Game {
         public abstract bool IsOver();
 
         public World GetWorld() {
-            return world;
+            return _world;
         }
 
         public Player GetPlayer() {
-            return player;
+            return _player;
         }
 
         public void OnTick(int currentTick) {
-            world.OnTick(currentTick);
+            _world.OnTick(currentTick);
         }
     }
 

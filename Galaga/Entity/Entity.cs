@@ -17,7 +17,7 @@ namespace Galaga.Entity {
             return Math.Sqrt((this.X - other.X) * (this.X - other.X) + (this.Y - other.Y) * (this.Y - other.Y));
         }
     }
-    
+
     public abstract class Entity {
         public Position Position;
         public readonly World World;

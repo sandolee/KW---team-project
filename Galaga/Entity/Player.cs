@@ -10,10 +10,14 @@ namespace Galaga.Entity
         public Player(World world) : this(new Position(0, 0), world, 10){}
         public void Move(int x, int y)
         {
-            if (x>0 && this.Position.X <= World.Size.Width - this.Size.Width)
+            if (x > 0 && this.Position.X < World.Size.Width - this.Size.Width / 2)
                 Position.X += x;
-            if ( x<0&& this.Position.X >= this.Size.Width)
+            else if (x < 0 && this.Position.X > this.Size.Width / 2)
                 Position.X += x;
+            //else if (y < 0 && this.Position.Y > this.Size.Height / 2)
+            //    Position.Y += y;
+            //else if (y > 0 && this.Position.Y < World.Size.Height - this.Size.Height / 2)
+            //    Position.Y += y;
         }
 
         public Player(Position position, World world, int health) : base(
@@ -25,7 +29,23 @@ namespace Galaga.Entity
         { }
 
         public override void OnTick(int currentTick) {
-            
+            foreach (var entity in World.EntityManager.Entities)
+            {
+                if (entity is Enemy enemy)
+                {
+                    if (this.EntityCollisionCheck(enemy))
+                    {
+                        Attack(1);
+                    }
+                }
+
+            }
+
+            //50 tic 이후로 godMode 해제 
+            if (GodMode.IsGodMode && currentTick > GodMode.GodModeStartTick + 50)
+            {
+                GodMode.EndGodMode();
+            }
         }
     }
 }

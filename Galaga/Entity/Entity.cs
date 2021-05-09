@@ -19,24 +19,24 @@ namespace Galaga.Entity {
     }
     public class GodMode
     {
-        public bool IsGodMode { get; set; }
-        public  int GodModeStartTic { get; set; }
+        public bool IsGodMode { get; private set; }
+        public  int GodModeStartTick { get; private set; }
         public GodMode()
         {
             IsGodMode = false;
-            GodModeStartTic = 0;
+            GodModeStartTick = 0;
         }
         public void StartGodMode(int tick)
         {
             IsGodMode = true;
-            GodModeStartTic = tick;
+            GodModeStartTick = tick;
         }
         public void EndGodMode(int tick)
         {
-            if (IsGodMode && tick > GodModeStartTic + 50)
+            if (IsGodMode && tick > GodModeStartTick + 50)
             {
                 IsGodMode = false;
-                GodModeStartTic = 0;
+                GodModeStartTick = 0;
             }
         }
 
@@ -46,7 +46,7 @@ namespace Galaga.Entity {
         public Position Position;
         public World World;
         public GodMode GodMode;
-        public int Health { get; set; }
+        public int Health { get; private set; }
 
         private Size _size;
         public Size Size => _size;

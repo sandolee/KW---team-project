@@ -34,18 +34,18 @@ namespace Galaga.Entity
                     if (this.ItemCollisionCheck(player))
                     {
                         player.Heal(1);
-                        this.Health = 0;//피격시 아이템 삭제 
+                        kill();//피격시 아이템 삭제 
                     }
                 }
             }
         }
     }
-    public class Portion : Item
+    public class Poition : Item
     {
-        public Portion(World world) : this(new Position(0, 0), world, new Size(1, 1), 1)
+        public Poition(World world) : this(new Position(0, 0), world, new Size(1, 1), 1)
         {
         }
-        public Portion(Position position, World world, Size size, int health) : base(
+        public Poition(Position position, World world, Size size, int health) : base(
             new Position(world.Size.Width-20, (int)(world.Size.Height - 5)),
             world,
             new Size(10, 10),
@@ -61,7 +61,7 @@ namespace Galaga.Entity
                     if (this.ItemCollisionCheck(player))
                     {
                         player.GodMode.StartGodMode(currentTick);
-                        this.Health = 0;//피격시 아이템 삭제 
+                        kill();//피격시 아이템 삭제 
                     }
                 }
             }

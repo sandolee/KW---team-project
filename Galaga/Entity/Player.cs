@@ -44,8 +44,7 @@ namespace Galaga.Entity
             //50 tic 이후로 godMode 해제 
             if (GodMode.IsGodMode && currentTick > GodMode.GodModeStartTick + 50)
             {
-                GodMode.IsGodMode = false;
-                GodMode.GodModeStartTick = 0;
+                GodMode.EndGodMode();
             }
         }
     }

@@ -31,13 +31,10 @@ namespace Galaga.Entity {
             IsGodMode = true;
             GodModeStartTick = tick;
         }
-        public void EndGodMode(int tick)
+        public void EndGodMode()
         {
-            if (IsGodMode && tick > GodModeStartTick + 50)
-            {
-                IsGodMode = false;
-                GodModeStartTick = 0;
-            }
+            IsGodMode = false;
+            GodModeStartTick = 0;
         }
 
     }
@@ -50,6 +47,11 @@ namespace Galaga.Entity {
 
         private Size _size;
         public Size Size => _size;
+
+        public void kill()
+        {
+            Health = 0;
+        }
 
         protected Entity(Position position, World world, Size size, int health) {
             Position = position;

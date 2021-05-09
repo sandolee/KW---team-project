@@ -45,7 +45,7 @@ namespace Galaga
                 if (Equals(txtPWCheck.Text, txtPW.Text))
                 {
                     FileAccess.FileAccess.WriteInfo(txtID.Text, txtPW.Text);
-                    this.Close();
+                    Close();
                 }
                 else
                     MessageBox.Show("비밀번호가 일치하지 않습니다.");

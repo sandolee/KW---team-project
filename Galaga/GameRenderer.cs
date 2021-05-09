@@ -1,25 +1,26 @@
 ﻿#nullable enable
 
-using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Galaga.Entity;
+using Galaga.Game;
 
 namespace Galaga {
     public class GameRenderer {
-        private readonly Game.Game _game;
+        private readonly GameManager _manager;
         private readonly Control _control;
 
-        private readonly ImageResources _resources = new ImageResources();
+        private static readonly ImageResources Resources = new ImageResources();
 
-        public GameRenderer(Control form, Game.Game game) {
+        public GameRenderer(Control form, GameManager manager) {
             _control = form;
-            _game = game;
+            this._manager = manager;
         }
 
         public void Draw(Graphics graphics) {
-            var world = _game.GetWorld();
-            if (world == null) return;
+            // TODO GameManager.State에 따라 다른 형태의 화면 표시가 필요함
+            
+            var world = _manager.GetWorld();
 
             var entities = world.EntityManager.Entities;
 
@@ -29,25 +30,34 @@ namespace Galaga {
             var factorWidth = width / world.Size.Width;
             var factorHeight = height / world.Size.Height;
             graphics.FillRectangle(Brushes.Black, 0, 0, world.Size.Width * factorWidth, world.Size.Height * factorHeight);
+            graphics.DrawString($@"Game state: {_manager.State switch {
+                PlayingState _ => "Playing",
+                PausedState _ => "Paused",
+                CompleteState _ => "Complete",
+                CompleteAllState _ => "CompleteAll",
+                IntermediateState _ => "Intermediate",
+                GameOverState _ => "GameOver",
+                _ => "Else"
+            }}", new Font("Arial", 16), Brushes.White, 0, 0);
 
             foreach (var entity in entities)
             {
                 switch (entity)
                 {
                     case Enemy enemy:
-                        graphics.DrawImage(_resources.Enemy, EntityToRect(enemy,factorWidth, factorHeight));
+                        graphics.DrawImage(Resources.Enemy, EntityToRect(enemy,factorWidth, factorHeight));
                         break;
                     case Ammo ammo:
-                        graphics.DrawImage(_resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));
+                        graphics.DrawImage(Resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));
                         break;
                     case Player player:
-                        graphics.DrawImage(_resources.Player, EntityToRect(player, factorWidth, factorHeight));
+                        graphics.DrawImage(Resources.Player, EntityToRect(player, factorWidth, factorHeight));
                         break;
                     case Heart heart:
-                        graphics.DrawImage(_resources.Heart, EntityToRect(heart, factorWidth, factorHeight));
+                        graphics.DrawImage(Resources.Heart, EntityToRect(heart, factorWidth, factorHeight));
                         break;
                     case Potion potion:
-                        graphics.DrawImage(_resources.Potion, EntityToRect(potion, factorWidth, factorHeight));
+                        graphics.DrawImage(Resources.Potion, EntityToRect(potion, factorWidth, factorHeight));
                         break;
                 }
             }

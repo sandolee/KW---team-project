@@ -7,35 +7,31 @@ namespace Galaga {
     public partial class Form1 : Form {
         private int _tick;
         
-        private GameRenderer _gameRenderer;
-        private Game.Game _game;
-        private Player _player;
-        private TestEnemy _enemy;
+        private readonly GameRenderer _gameRenderer;
+        private readonly GameManager _manager;
 
-        //item 테스트를 위한 hp 표시 label
-        Label label = new Label();
-
+        private Label _label = new Label();
+        
         public Form1() {
             InitializeComponent();
-            this.Controls.Add(label);
-            var world = new World(new EnemySpawnerImpl());
-            _player = new Player(world);
-            _game = new Game.Game(new SimpleGameDelegate(world));
-
-            _gameRenderer = new GameRenderer(this, _game);
-
-            world.EntityManager.AddEntity(_player);
             
+            Controls.Add(_label);
+            
+            _manager = new GameManager();
+            _gameRenderer = new GameRenderer(this, _manager);
+
             var timer = new Timer {
-                Interval = 50, Enabled = true,
+                Interval = 50, Enabled = true
             };
             timer.Tick += OnTimerTick;
             timer.Start();
             KeyDown += Form1_KeyDown;
 
+            var world = _manager.GetWorld();
             // 테스트적 생성
-            _enemy = new TestEnemy(world);
-            world.EntityManager.AddEntity(_enemy);
+            
+            var enemy = new TestEnemy(world);
+            world.EntityManager.AddEntity(enemy);
 
             // 아이템 테스트 
             Heart heart = new Heart(world);
@@ -43,11 +39,13 @@ namespace Galaga {
             Potion potion = new Potion(world);
             world.EntityManager.AddEntity(potion);
 
-             
+            world.EntityManager.AddEntity(new TestEnemy(_manager.GetWorld()));
+
+            _manager.Start();
         }
 
         private void OnTimerTick(object obj, EventArgs args) {
-            _game.OnTick(_tick++);
+            _manager.Tick(_tick++);
 
             Invalidate();
         }
@@ -57,20 +55,21 @@ namespace Galaga {
             
             _gameRenderer.Draw(e.Graphics);
 
+            var player = _manager.GetPlayer();
             //아이템 테스트를 위한 hp 표시 label 
-            label.Text = _player.Health.ToString()+" "+_player.GodMode.GodModeStartTick;
-            label.ForeColor = System.Drawing.Color.White;
-            label.BackColor = System.Drawing.Color.Transparent;
+            _label.Text = $"{player.Health} ${player.GodMode.GodModeStartTick}";
+            _label.ForeColor = System.Drawing.Color.White;
+            _label.BackColor = System.Drawing.Color.Transparent;
         }
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
+        
+        private void Form1_KeyDown(object sender, KeyEventArgs e) {
             switch (e.KeyCode)
             {
                 case Keys.Right:
-                    _player.Move(5,0);
+                    _manager.MovePlayer(5, 0);
                     break;
                 case Keys.Left:
-                    _player.Move(-5, 0);
+                    _manager.MovePlayer(-5, 0);
                     break;
                 //case Keys.Up:
                 //    _player.Move(0,-5);
@@ -79,13 +78,9 @@ namespace Galaga {
                 //    _player.Move(0, 5);
                 //    break;
                 case Keys.Space:
-                    _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X + 4, _player.Position.Y ), _game.GetWorld(), 1));
-                    _game.GetWorld().EntityManager.AddEntity(new Ammo(new Position(_player.Position.X - 4, _player.Position.Y ), _game.GetWorld(), 1));
-                    break;
-                default:
+                    _manager.Shoot();
                     break;
             }
         }
-
     }
 }

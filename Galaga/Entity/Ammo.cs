@@ -24,9 +24,9 @@ namespace Galaga.Entity {
 			Position.Y= Position.Y - 5;
 			foreach(var entity in World.EntityManager.Entities) {
 				if(entity is Enemy enemy) {
-					if(AmmoCollisionCheck(enemy) == true){
+					if(AmmoCollisionCheck(enemy)){
 						enemy.Attack(10);
-						enemy.Position.Y= enemy.Position.Y-100;
+						enemy.Position.Y -= 100;
 					}
 				}		
 			}

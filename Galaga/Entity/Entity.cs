@@ -48,7 +48,7 @@ namespace Galaga.Entity {
         private Size _size;
         public Size Size => _size;
 
-        public void kill()
+        public void Kill()
         {
             Health = 0;
         }

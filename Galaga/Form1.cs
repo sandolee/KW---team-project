@@ -40,7 +40,7 @@ namespace Galaga {
             // 아이템 테스트 
             Heart heart = new Heart(world);
             world.EntityManager.AddEntity(heart);
-            Portion portion = new Portion(world);
+            Poition portion = new Poition(world);
             world.EntityManager.AddEntity(portion);
 
              

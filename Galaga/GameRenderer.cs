@@ -46,8 +46,8 @@ namespace Galaga {
                     case Heart heart:
                         graphics.DrawImage(_resources.Heart, EntityToRect(heart, factorWidth, factorHeight));
                         break;
-                    case Poition portion:
-                        graphics.DrawImage(_resources.Portion, EntityToRect(portion, factorWidth, factorHeight));
+                    case Potion potion:
+                        graphics.DrawImage(_resources.Potion, EntityToRect(potion, factorWidth, factorHeight));
                         break;
                 }
             }
@@ -75,6 +75,6 @@ namespace Galaga {
         public readonly Image Enemy = Properties.Resources.Enemy;
         public readonly Image Player = Properties.Resources.Entity1;
         public readonly Image Heart = Properties.Resources.heart;
-        public readonly Image Portion = Properties.Resources.potion;
+        public readonly Image Potion = Properties.Resources.potion;
     }
 }

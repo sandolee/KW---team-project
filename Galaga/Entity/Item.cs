@@ -40,12 +40,12 @@ namespace Galaga.Entity
             }
         }
     }
-    public class Poition : Item
+    public class Potion : Item
     {
-        public Poition(World world) : this(new Position(0, 0), world, new Size(1, 1), 1)
+        public Potion(World world) : this(new Position(0, 0), world, new Size(1, 1), 1)
         {
         }
-        public Poition(Position position, World world, Size size, int health) : base(
+        public Potion(Position position, World world, Size size, int health) : base(
             new Position(world.Size.Width-20, (int)(world.Size.Height - 5)),
             world,
             new Size(10, 10),

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using static System.IO.Directory;
 using System.Windows.Forms;
 
 namespace Galaga.FileAccess
@@ -22,10 +23,13 @@ namespace Galaga.FileAccess
     }
     static class FileAccess
     {
-        static String path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "PlayerInfo", "PlayerInfo.csv"));
-
+        static String directoryPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "PlayerInfo"));
+        static String path = Path.GetFullPath(Path.Combine(directoryPath, "PlayerInfo.csv"));
+        
         public static List<Account> ReadInfo()
         {
+            CreateInfo();
+
             StreamReader sr = new StreamReader(path);
             List<Account> accounts = new List<Account>();
             var csvList = new List<string[]>();
@@ -55,6 +59,8 @@ namespace Galaga.FileAccess
 
         public static void WriteInfo(String ID, String PW)
         {
+            CreateInfo();
+
             try
             {
                 File.AppendAllText(path, ID + ",0,0," + PW+"\n");
@@ -62,6 +68,15 @@ namespace Galaga.FileAccess
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "File Write Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void CreateInfo()
+        {
+
+            if (!Exists(directoryPath))
+            {
+                CreateDirectory(directoryPath);
+                FileStream stream = File.Create(path);
             }
         }
     }

@@ -6,15 +6,15 @@ using Galaga.Game;
 namespace Galaga {
     public partial class Form1 : Form {
         private int _tick;
-        
+        private string ID;
         private readonly GameRenderer _gameRenderer;
         private readonly GameManager _manager;
 
         //private Label _label = new Label();
         
-        public Form1() {
+        public Form1(string ID) {
             InitializeComponent();
-
+            this.ID = ID;
             //Controls.Add(_label);
             
             _manager = new GameManager();
@@ -82,6 +82,12 @@ namespace Galaga {
                     _manager.Shoot();
                     break;
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // player 정보 갱신 
+            FileAccess.FileAccess.UpdateInfo(ID, _manager.Stage, _manager.GetWorld().GetScore());
         }
     }
 }

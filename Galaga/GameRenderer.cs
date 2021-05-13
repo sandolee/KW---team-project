@@ -74,6 +74,14 @@ namespace Galaga {
                 }
                 
             }
+            foreach (Control c in _control.Controls)
+            {
+                if (c.Name=="lblScore")
+                {
+                    c.Text = world.GetScore().ToString();
+                }
+            }
+            
         }
 
         private static Point PositionToPoint(Position position, float factor) {

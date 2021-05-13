@@ -73,6 +73,8 @@ namespace Galaga.Entity {
         public void Attack(int damage) {
             if (!GodMode.IsGodMode)
                 Health -= damage;
+            //attack시 점수 증가 
+            this.World.AddScore(10);
         }
 
         public abstract void OnTick(int currentTick);

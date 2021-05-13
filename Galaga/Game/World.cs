@@ -5,6 +5,17 @@ namespace Galaga.Game {
         private readonly IEntitySpawner _entitySpawner;
         public readonly Size Size;
 
+        private int score;
+        public int GetScore()
+        {
+            return score;
+        }
+
+        public void AddScore(int score)
+        {
+            this.score = score;
+        }
+
         public EntityManager EntityManager { get; }
 
         public World(IEntitySpawner entitySpawner, Size size) {
@@ -13,6 +24,7 @@ namespace Galaga.Game {
             Size = size;
 
             _entitySpawner = entitySpawner;
+
         }
 
         public World(IEntitySpawner entitySpawner): this(entitySpawner, new Size(100, 100)) {

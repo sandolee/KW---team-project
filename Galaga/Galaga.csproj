@@ -48,10 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\Ammo.cs" />
+    <Compile Include="Entity\AmmoEntity\StraightEnemyAmmo.cs" />
     <Compile Include="Entity\Enemy.cs" />
+    <Compile Include="Entity\EnemyEntity\StraightEnemy.cs" />
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Entity\Item.cs" />
     <Compile Include="Entity\Player.cs" />
+    <Compile Include="Entity\ISelfDisposingEntity.cs" />
     <Compile Include="FileAccess\FileAccess.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

@@ -2,12 +2,15 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Galaga.Entity;
 
 namespace Galaga.Game {
     public class EntityManager {
+        private readonly List<Entity.Entity> _entityBuffer = new List<Entity.Entity>();
+        
         private readonly List<Entity.Entity> _entities = new List<Entity.Entity>();
 
-        public ReadOnlyCollection<Entity.Entity> Entities;
+        public readonly ReadOnlyCollection<Entity.Entity> Entities;
 
         public EntityManager() {
             Entities = _entities.AsReadOnly();
@@ -26,12 +29,28 @@ namespace Galaga.Game {
             }
 
             _entities.RemoveAll(entity => entity.Health <= 0);
+
+            if (_entityBuffer.Count > 0) {
+                foreach (var entity in _entityBuffer) {
+                    _entities.Add(entity);
+                }
+                _entityBuffer.Clear();
+            }
+        }
+
+        private bool ShouldDeleteEntity(Entity.Entity entity) {
+            var world = entity.World;
+            
+            return entity.Health <= 0
+                   || (!(entity is ISelfDisposingEntity) 
+                       && (entity.Position.X < 0 || world.Size.Width < entity.Position.X
+                            || entity.Position.Y > world.Size.Height));
         }
 
         public void AddEntity(Entity.Entity entity) {
             if(entity.Health <= 0) return;
             
-            _entities.Add(entity);
+            _entityBuffer.Add(entity);
         }
     }
 }

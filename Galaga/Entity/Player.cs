@@ -4,7 +4,7 @@
 
 namespace Galaga.Entity
 {
-    public class Player : Entity
+    public class Player : Entity, ISelfDisposingEntity
     {
         public Player(World world) :
             this(new Position(world.Size.Width / 2, world.Size.Height - 5), world, 10) {
@@ -42,7 +42,7 @@ namespace Galaga.Entity
             {
                 if (entity is Enemy enemy)
                 {
-                    if (this.EntityCollisionCheck(enemy)) {
+                    if (CollidesWith(enemy)) {
                         enemy.Attack(1);
                         Attack(1);
                     }

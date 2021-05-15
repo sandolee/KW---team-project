@@ -76,21 +76,19 @@ namespace Galaga.Entity {
         }
 
         public abstract void OnTick(int currentTick);
-
-        public bool EntityCollisionCheck(Enemy b) //비행기본체와 적 피격판정
+        
+        public bool CollidesWith(Entity entity) //비행기본체와 적 피격판정
         {
             //true => 피격성공
-            if( this.Position.Y - this.Size.Height/2 >= b.Position.Y  + b.Size.Height/2 || this.Position.Y + this.Size.Height/2 <= b.Position.Y - b.Size.Height/2)
+            if( Position.Y - Size.Height/2 >= entity.Position.Y  + entity.Size.Height/2 || Position.Y + Size.Height/2 <= entity.Position.Y - entity.Size.Height/2)
                 return false;
 
-            else if(this.Position.X + b.Size.Width/2 <= b.Position.X - b.Size.Width/2 || this.Position.X - this.Size.Width/2 >= b.Position.X+b.Size.Width/2)
+            if(Position.X + entity.Size.Width/2 <= entity.Position.X - entity.Size.Width/2 || Position.X - Size.Width/2 >= entity.Position.X+entity.Size.Width/2)
                 return false;
             
-            else
-                return true;
-
+            return true;
         }
-        
+
         public bool ItemCollisionCheck(Player player)
         {
             if (this.Position.Y - this.Size.Height/2 >= player.Position.Y + player.Size.Height/2 || this.Position.Y + this.Size.Height/2 <= player.Position.Y - player.Size.Height/2)
@@ -107,5 +105,4 @@ namespace Galaga.Entity {
             Health += heal;
         }
     }
-
 }

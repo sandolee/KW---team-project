@@ -20,15 +20,18 @@ namespace Galaga.Game {
         public readonly List<OnEntityKillDelegate> OnEntityKill = new List<OnEntityKillDelegate>();
 
         public void OnTick(int currentTick) {
+            var removing = new List<Entity.Entity>();
+
             foreach (var entity in _entities) {
-                if (entity.Health <= 0) {
+                if (ShouldDeleteEntity(entity)) {
+                    removing.Add(entity);
                     OnEntityKill.ForEach(del => del(entity));
                 } else {
                     entity.OnTick(currentTick);
                 }
             }
 
-            _entities.RemoveAll(entity => entity.Health <= 0);
+            _entities.RemoveAll(entity => removing.Contains(entity));
 
             if (_entityBuffer.Count > 0) {
                 foreach (var entity in _entityBuffer) {

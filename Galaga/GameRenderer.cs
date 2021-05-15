@@ -48,6 +48,16 @@ namespace Galaga {
                 {
                     case Enemy enemy:
                         graphics.DrawImage(Resources.Enemy, EntityToRect(enemy,factorWidth, factorHeight));
+
+                        graphics.DrawRectangle(pen, (int) ((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth), (int) ((enemy.Position.Y - enemy.Size.Height ) * factorHeight), 
+                            (int) (enemy.Size.Width * factorWidth),  (int) (enemy.Size.Height * factorHeight/2));
+                                              
+                        //graphics.FillRectangle(Brushes.Black, (int) ((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth ), (int) ((enemy.Position.Y - enemy.Size.Height ) * factorHeight), 
+                            //(int) (enemy.Size.Width * factorWidth),  (int) (enemy.Size.Height * factorHeight/2));
+                                                
+                        graphics.FillRectangle(Brushes.Red, (int) ((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth) , (int) ((enemy.Position.Y - enemy.Size.Height ) * factorHeight), 
+                            (int) (enemy.Size.Width * factorWidth/10*enemy.Health),  (int) (enemy.Size.Height * factorHeight/2));
+                        
                         break;
                     case Ammo ammo:
                         graphics.DrawImage(Resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));

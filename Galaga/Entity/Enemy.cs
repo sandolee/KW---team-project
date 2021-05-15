@@ -26,4 +26,19 @@ namespace Galaga.Entity {
 				Position.X= Position.X + 1;
 		 }
 	}
+
+	public class TestBossEnemy: Enemy{
+		public TestBossEnemy(World world) : this(new Position(0, 10), world, 10){}
+		
+		public TestBossEnemy(Position position, World world, int health) : base(
+            position,
+            world,
+            new Size(10, 10),
+            health
+        ){}
+
+		 public override void OnTick(int currentTick) {
+      			Position.X= Position.X + 1;
+ 		 }
+	}
 }

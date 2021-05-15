@@ -27,6 +27,9 @@ namespace Galaga.Entity {
 					if(AmmoCollisionCheck(enemy)){
 						enemy.Attack(10);
 						enemy.Position.Y -= 100;
+
+						//attack 확인
+						UpdateScore();
 					}
 				}		
 			}

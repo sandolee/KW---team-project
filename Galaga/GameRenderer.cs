@@ -78,7 +78,7 @@ namespace Galaga {
             {
                 if (c.Name=="lblScore")
                 {
-                    c.Text = world.GetScore().ToString();
+                    c.Text = _manager.Game.GetScore().ToString();
                 }
             }
             

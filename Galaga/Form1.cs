@@ -87,7 +87,7 @@ namespace Galaga {
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             // player 정보 갱신 
-            FileAccess.FileAccess.UpdateInfo(ID, _manager.Stage, _manager.GetWorld().GetScore());
+            FileAccess.FileAccess.UpdateInfo(ID, _manager.Stage,_manager.Game.GetScore());
         }
     }
 }

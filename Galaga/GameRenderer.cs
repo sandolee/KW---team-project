@@ -78,7 +78,7 @@ namespace Galaga {
             {
                 if (c.Name=="lblScore")
                 {
-                    c.Text = _manager.Game.GetScore().ToString();
+                    c.Text = _manager.Game.GetScore().ToString()+" " +_manager.GetWorld().EntityManager.OnEntityAttacked.Count;
                 }
             }
             

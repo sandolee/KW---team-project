@@ -148,9 +148,7 @@ namespace Galaga.Game {
 
 			var game = _manager.Game;
 
-			//피격시 10점 
-			game.SetScore(10);
-			
+
 			if (game.IsCleared()) {
 				if (!HasGameCleared()) return;
 

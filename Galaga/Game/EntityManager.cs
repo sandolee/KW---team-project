@@ -29,6 +29,10 @@ namespace Galaga.Game {
         
         public delegate void OnEntityKillDelegate(Entity.Entity entity);
         public readonly List<OnEntityKillDelegate> OnEntityKill = new List<OnEntityKillDelegate>();
+        
+        //틱마다 list에 delegate가 추가되는 문제 
+        public delegate void OnEntityAttackedDelegate(Entity.Entity entity);
+        public readonly List<OnEntityAttackedDelegate> OnEntityAttacked = new List<OnEntityAttackedDelegate>();
 
         public void OnTick(int currentTick) {
             foreach (var entity in _entities) {
@@ -36,11 +40,6 @@ namespace Galaga.Game {
                     OnEntityKill.ForEach(del => del(entity));
                 } else {
                     entity.OnTick(currentTick);
-                }
-                if (entity.IfAttacked)
-                {
-                    score.SetScore();
-                    entity.EndUpdateScore();
                 }
             }
 

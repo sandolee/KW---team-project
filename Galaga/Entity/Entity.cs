@@ -84,6 +84,7 @@ namespace Galaga.Entity {
         public void Attack(int damage) {
             if (!GodMode.IsGodMode)
                 Health -= damage;
+            UpdateScore();
         }
 
         public abstract void OnTick(int currentTick);

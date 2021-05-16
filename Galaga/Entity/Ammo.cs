@@ -15,8 +15,8 @@ namespace Galaga.Entity {
 		public bool AmmoCollisionCheck(Enemy b) //총알과 적 피격판정
         {
             //true => 피격 성공
-			return b.Position.X + b.Size.Width >= this.Position.X && b.Position.X - b.Size.Width <= this.Position.X && 
-				b.Position.Y + b.Size.Height >= this.Position.Y && b.Position.Y - b.Size.Width <= this.Position.Y;
+			return b.Position.X + b.Size.Width/2 >= this.Position.X && b.Position.X - b.Size.Width/2 <= this.Position.X && 
+				b.Position.Y + b.Size.Height/2 >= this.Position.Y && b.Position.Y - b.Size.Height/2 <= this.Position.Y;
         }
 		
 		public override void OnTick(int currentTick) {
@@ -27,9 +27,6 @@ namespace Galaga.Entity {
 					if(AmmoCollisionCheck(enemy)){
 						enemy.Attack(10);
 						enemy.Position.Y -= 100;
-
-						//attack 확인
-						UpdateScore();
 					}
 				}		
 			}

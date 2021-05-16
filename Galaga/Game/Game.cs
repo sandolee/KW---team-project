@@ -50,12 +50,15 @@ namespace Galaga.Game {
         }
 
         public void SetScore(int score)
-        {
-            if (_world.EntityManager.score.scoreFlag)
-            {
-                _score += score;
-                _world.EntityManager.score.EndScore();
-            }
+         {
+            _world.EntityManager.OnEntityAttacked.Add(
+                entity =>
+                {
+                    if (entity is Enemy)
+                    {
+                        _score += score;
+                    }
+                });
         }
         public int GetScore()
         {
@@ -64,8 +67,11 @@ namespace Galaga.Game {
     }
 
     internal class Stage1Game : BaseGame {
-        public Stage1Game() : base(new World(new EntitySpawner())) {
-            
+        public Stage1Game() : base(new World(new EntitySpawner()))
+        {
+            //피격시 10점 
+            SetScore(10);
+
         }
 
         public override bool IsCleared() {

@@ -52,7 +52,7 @@ namespace Galaga {
         }
 
         protected override void OnPaint(PaintEventArgs e) {
-            base.OnPaint(e);
+             base.OnPaint(e);
             
             _gameRenderer.Draw(e.Graphics);
             

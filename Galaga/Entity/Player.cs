@@ -45,8 +45,6 @@ namespace Galaga.Entity
                     if (this.EntityCollisionCheck(enemy)) {
                         enemy.Attack(1);
                         Attack(1);
-                        //attack 확인
-                        UpdateScore();
                     }
                 }
             }

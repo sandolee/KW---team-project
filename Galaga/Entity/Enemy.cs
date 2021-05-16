@@ -33,7 +33,7 @@ namespace Galaga.Entity {
 		public TestBossEnemy(Position position, World world, int health) : base(position, world, new Size(10, 10),health){}
 
 		public override void OnTick(int currentTick) {
-      			Position.X= Position.X + 1;
+      		Position.X= Position.X + 1;
  		}
 	}
 }

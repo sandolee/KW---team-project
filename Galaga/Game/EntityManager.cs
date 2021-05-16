@@ -4,21 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Galaga.Game {
-    public class Score
-    {
-        public bool scoreFlag { get; private set; }
-
-        public void SetScore() {
-            scoreFlag = true;
-        }
-        public void EndScore()
-        {
-            scoreFlag = false;
-        }
-
-    }
     public class EntityManager {
-        public Score score=new Score();
         private readonly List<Entity.Entity> _entities = new List<Entity.Entity>();
 
         public ReadOnlyCollection<Entity.Entity> Entities;

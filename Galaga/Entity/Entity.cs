@@ -50,15 +50,6 @@ namespace Galaga.Entity {
         private readonly Size _size;
 
         public Boolean IfAttacked { get; private set; }
-        public void UpdateScore()
-        {
-            IfAttacked = true;
-        }
-        public void EndUpdateScore()
-        {
-            IfAttacked = false;
-        }
-
         public Size Size => _size;
 
         public void Kill()
@@ -83,8 +74,8 @@ namespace Galaga.Entity {
 
         public void Attack(int damage) {
             if (!GodMode.IsGodMode)
-                Health -= damage;
-            UpdateScore();
+                Health -= damage; 
+            World.EntityManager.OnEntityAttacked.ForEach(attacked=>attacked(this));
         }
 
         public abstract void OnTick(int currentTick);

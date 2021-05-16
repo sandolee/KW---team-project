@@ -63,11 +63,31 @@ namespace Galaga.FileAccess
 
             try
             {
+                //ID, Stage, Score,PW 
                 File.AppendAllText(path, ID + ",0,0," + PW+"\n");
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "File Write Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static void UpdateInfo(string ID, int stage, int score)
+        {
+            CreateInfo();
+            var csvList = new List<string[]>();
+            try
+            {
+                string[] line;
+                line = File.ReadAllLines(path);
+                int index=Array.FindIndex(line, row=>row.Contains(ID));
+                string PW = line[index].Split(',')[3];
+                line[index] = ID + "," + stage.ToString() + "," + score.ToString() + "," + PW;
+                File.WriteAllLines(path, line);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "File Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static void CreateInfo()

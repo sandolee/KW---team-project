@@ -17,17 +17,21 @@ namespace Galaga.Game {
         public bool IsOver();
 
         public void OnTick(int currentTick);
+
+        public int GetScore();
+        public void SetScore(int score);
     }
 
     public abstract class BaseGame : IGame {
         private readonly World _world;
         private readonly Player _player;
-
+        private int _score;
         protected BaseGame(World world) {
             this._world = world;
 
             _player = new Player(world);
             world.EntityManager.AddEntity(_player);
+            _score = 0;
         }
 
         public abstract bool IsCleared();
@@ -45,12 +49,31 @@ namespace Galaga.Game {
         public void OnTick(int currentTick) {
             _world.OnTick(currentTick);
         }
+
+        public void SetScore(int score)
+         {
+            _world.EntityManager.OnEntityAttacked.Add(
+                entity =>
+                {
+                    if (entity is Enemy)
+                    {
+                        _score += score;
+                    }
+                });
+        }
+        public int GetScore()
+        {
+            return this._score;
+        }
     }
     
     internal class Stage1Game : BaseGame {
         public Stage1Game() : base(new World()) {
             var world = GetWorld();
             world.SetEntitySpawner(new EntitySpawner(world));
+
+            //피격시 10점 
+            SetScore(10);
         }
 
         public override bool IsCleared() {

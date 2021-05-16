@@ -6,16 +6,16 @@ using Galaga.Game;
 namespace Galaga {
     public partial class Form1 : Form {
         private int _tick;
-        
+        private string ID;
         private readonly GameRenderer _gameRenderer;
         private readonly GameManager _manager;
 
-        private Label _label = new Label();
+        //private Label _label = new Label();
         
-        public Form1() {
+        public Form1(string ID) {
             InitializeComponent();
-            
-            Controls.Add(_label);
+            this.ID = ID;
+            //Controls.Add(_label);
             
             _manager = new GameManager();
             _gameRenderer = new GameRenderer(this, _manager);
@@ -28,10 +28,12 @@ namespace Galaga {
             KeyDown += Form1_KeyDown;
 
             var world = _manager.GetWorld();
-            // 테스트적 생성
             
+            // 테스트적 생성
             var enemy = new TestEnemy(world);
             world.EntityManager.AddEntity(enemy);
+            var bossenemy = new TestBossEnemy(world);
+            world.EntityManager.AddEntity(bossenemy);
 
             // 아이템 테스트 
             Heart heart = new Heart(world);
@@ -42,6 +44,7 @@ namespace Galaga {
             world.EntityManager.AddEntity(new TestEnemy(_manager.GetWorld()));
 
             _manager.Start();
+            
         }
 
         private void OnTimerTick(object obj, EventArgs args) {
@@ -51,15 +54,15 @@ namespace Galaga {
         }
 
         protected override void OnPaint(PaintEventArgs e) {
-            base.OnPaint(e);
+             base.OnPaint(e);
             
             _gameRenderer.Draw(e.Graphics);
-
-            var player = _manager.GetPlayer();
+            
+            //var player = _manager.GetPlayer();
             //아이템 테스트를 위한 hp 표시 label 
-            _label.Text = $"{player.Health} ${player.GodMode.GodModeStartTick}";
-            _label.ForeColor = System.Drawing.Color.White;
-            _label.BackColor = System.Drawing.Color.Transparent;
+            //_label.Text = $"{player.Health} ${player.GodMode.GodModeStartTick}";
+            //_label.ForeColor = System.Drawing.Color.White;
+            //_label.BackColor = System.Drawing.Color.Transparent;
         }
         
         private void Form1_KeyDown(object sender, KeyEventArgs e) {
@@ -81,6 +84,12 @@ namespace Galaga {
                     _manager.Shoot();
                     break;
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // player 정보 갱신 
+            FileAccess.FileAccess.UpdateInfo(ID, _manager.Stage,_manager.Game.GetScore());
         }
     }
 }

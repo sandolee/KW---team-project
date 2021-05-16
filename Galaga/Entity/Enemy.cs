@@ -30,15 +30,10 @@ namespace Galaga.Entity {
 	public class TestBossEnemy: Enemy{
 		public TestBossEnemy(World world) : this(new Position(0, 10), world, 10){}
 		
-		public TestBossEnemy(Position position, World world, int health) : base(
-            position,
-            world,
-            new Size(10, 10),
-            health
-        ){}
+		public TestBossEnemy(Position position, World world, int health) : base(position, world, new Size(10, 10),health){}
 
-		 public override void OnTick(int currentTick) {
+		public override void OnTick(int currentTick) {
       			Position.X= Position.X + 1;
- 		 }
+ 		}
 	}
 }

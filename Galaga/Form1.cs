@@ -28,10 +28,12 @@ namespace Galaga {
             KeyDown += Form1_KeyDown;
 
             var world = _manager.GetWorld();
-            // 테스트적 생성
             
+            // 테스트적 생성
             var enemy = new TestEnemy(world);
             world.EntityManager.AddEntity(enemy);
+            var bossenemy = new TestBossEnemy(world);
+            world.EntityManager.AddEntity(bossenemy);
 
             // 아이템 테스트 
             Heart heart = new Heart(world);

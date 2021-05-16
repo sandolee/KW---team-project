@@ -59,7 +59,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1271, 992);
+            this.ClientSize = new System.Drawing.Size(778, 744);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblScore);
             this.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));

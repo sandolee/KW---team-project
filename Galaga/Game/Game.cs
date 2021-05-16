@@ -85,6 +85,7 @@ namespace Galaga.Game {
         }
 
         // Stage 1의 엔티티 소환을 관리
+        // item 소환, form tab 순서 관리, 이미지 크기 줄이기
         private class EntitySpawner : IEntitySpawner {
             private int _lastSpawn = -1;
 

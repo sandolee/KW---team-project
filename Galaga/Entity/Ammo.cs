@@ -26,6 +26,7 @@ namespace Galaga.Entity {
 				if(entity is Enemy enemy) {
 					if(AmmoCollisionCheck(enemy)){
 						enemy.Attack(1);
+						this.Kill();
            			}
 				}		
 			}

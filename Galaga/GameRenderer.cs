@@ -72,13 +72,12 @@ namespace Galaga {
                         graphics.DrawImage(Resources.Potion, EntityToRect(potion, factorWidth, factorHeight));
                         break;
                 }
-                
             }
             foreach (Control c in _control.Controls)
             {
                 if (c.Name=="lblScore")
                 {
-                    c.Text = _manager.Game.GetScore().ToString()+" " +_manager.GetWorld().EntityManager.OnEntityAttacked.Count;
+                    c.Text = _manager.Game.GetScore().ToString();
                 }
             }
             

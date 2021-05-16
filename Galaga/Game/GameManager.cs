@@ -147,6 +147,8 @@ namespace Galaga.Game {
 			_manager.Game.OnTick(currentTick);
 
 			var game = _manager.Game;
+
+
 			if (game.IsCleared()) {
 				if (!HasGameCleared()) return;
 

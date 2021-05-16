@@ -13,6 +13,7 @@ namespace Galaga.Game {
             Size = size;
 
             _entitySpawner = entitySpawner;
+
         }
 
         public World(IEntitySpawner entitySpawner): this(entitySpawner, new Size(100, 100)) {

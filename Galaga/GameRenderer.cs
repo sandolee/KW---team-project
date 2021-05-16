@@ -3,6 +3,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Galaga.Entity;
+using Galaga.Entity.AmmoEntity;
 using Galaga.Game;
 
 namespace Galaga {
@@ -81,6 +82,9 @@ namespace Galaga {
                     case Potion potion:
                         graphics.DrawImage(Resources.Potion, EntityToRect(potion, factorWidth, factorHeight));
                         break;
+                    case StraightEnemyAmmo _:
+                        graphics.DrawImage(Resources.EnemyAmmo, EntityToRect(entity, factorWidth, factorHeight));
+                        break;
                 }
             }
             foreach (Control c in _control.Controls)
@@ -112,9 +116,14 @@ namespace Galaga {
 
     internal class ImageResources {
         public readonly Image Ammo = Properties.Resources.ammo;
+        public readonly Image EnemyAmmo = Properties.Resources.ammo;
         public readonly Image Enemy = Properties.Resources.Enemy;
         public readonly Image Player = Properties.Resources.Entity1;
         public readonly Image Heart = Properties.Resources.heart;
         public readonly Image Potion = Properties.Resources.potion;
+
+        public ImageResources() {
+            EnemyAmmo.RotateFlip(RotateFlipType.RotateNoneFlipY);
+        }
     }
 }

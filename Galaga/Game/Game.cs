@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Galaga.Entity;
+using Galaga.Entity.EnemyEntity;
 
 #nullable enable
 
@@ -65,13 +66,14 @@ namespace Galaga.Game {
             return this._score;
         }
     }
-
+    
     internal class Stage1Game : BaseGame {
-        public Stage1Game() : base(new World(new EntitySpawner()))
-        {
+        public Stage1Game() : base(new World()) {
+            var world = GetWorld();
+            world.SetEntitySpawner(new EntitySpawner(world));
+
             //피격시 10점 
             SetScore(10);
-
         }
 
         public override bool IsCleared() {
@@ -84,7 +86,33 @@ namespace Galaga.Game {
 
         // Stage 1의 엔티티 소환을 관리
         private class EntitySpawner : IEntitySpawner {
+            private int _lastSpawn = -1;
+
+            private readonly World _world;
+
+            public EntitySpawner(World world) {
+                _world = world;
+            }
+            
             public IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick) {
+                if (currentTick - _lastSpawn > 100) {
+                    var entities = new List<Entity.Entity>();
+
+                    var worldWidth = _world.Size.Width;
+
+                    for (var i = 0; i < 4; ++i) {
+                        entities.Add(new StraightEnemy(
+                            new Position(worldWidth / 5 * (i + 1), 0), 
+                            _world, new Size(10, 10),
+                            5
+                        ));
+
+                        _lastSpawn = currentTick;
+                    }
+
+                    return entities;
+                }
+                
                 return new Entity.Entity[0];
             }
         }

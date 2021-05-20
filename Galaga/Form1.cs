@@ -35,11 +35,6 @@ namespace Galaga {
             var bossenemy = new TestBossEnemy(world);
             world.EntityManager.AddEntity(bossenemy);
 
-            // 아이템 테스트 
-            Heart heart = new Heart(world);
-            world.EntityManager.AddEntity(heart);
-            Potion potion = new Potion(world);
-            world.EntityManager.AddEntity(potion);
 
             world.EntityManager.AddEntity(new TestEnemy(_manager.GetWorld()));
 
@@ -58,11 +53,6 @@ namespace Galaga {
             
             _gameRenderer.Draw(e.Graphics);
             
-            //var player = _manager.GetPlayer();
-            //아이템 테스트를 위한 hp 표시 label 
-            //_label.Text = $"{player.Health} ${player.GodMode.GodModeStartTick}";
-            //_label.ForeColor = System.Drawing.Color.White;
-            //_label.BackColor = System.Drawing.Color.Transparent;
         }
         
         private void Form1_KeyDown(object sender, KeyEventArgs e) {

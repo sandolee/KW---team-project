@@ -34,5 +34,19 @@ namespace Galaga
             SignUp.StartPosition = FormStartPosition.CenterParent;
             SignUp.ShowDialog();
         }
+
+        private void btnLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if(e.KeyCode == Keys.Enter)
+            {
+                CustomButton cbtn = (CustomButton)sender;
+                if (cbtn.Text.Equals("Login"))
+                    btnLogin_Click(sender, e);
+
+                else if (cbtn.Text.Equals("SignUp"))
+                    btnSignUp_Click(sender, e);
+            }
+        }
     }
 }

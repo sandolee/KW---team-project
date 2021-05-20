@@ -13,7 +13,7 @@ namespace Galaga {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1("Kim"));
+            Application.Run(new Main());
         }
     }
 }

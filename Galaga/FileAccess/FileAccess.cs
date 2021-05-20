@@ -74,13 +74,21 @@ namespace Galaga.FileAccess
 
         public static void UpdateInfo(string ID, int stage, int score)
         {
+
+
             CreateInfo();
             var csvList = new List<string[]>();
             try
             {
                 string[] line;
                 line = File.ReadAllLines(path);
+                //ID에 해당하는 열을 찾는다. 
                 int index=Array.FindIndex(line, row=>row.Contains(ID));
+                
+                //원래 score보다 낮으면 기록X
+                if (int.Parse(line[index].Split(',')[2]) >= score)
+                    return;
+                
                 string PW = line[index].Split(',')[3];
                 line[index] = ID + "," + stage.ToString() + "," + score.ToString() + "," + PW;
                 File.WriteAllLines(path, line);

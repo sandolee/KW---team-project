@@ -14,7 +14,7 @@ namespace Galaga
 {
     public partial class Ranking : Form
     {
-        private String[] rankingInfo ={"Rank","Name","Stage","Score" };
+        private String[] rankingInfo ={"Rank","Name","Score" };
         public Ranking()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace Galaga
             lvwRanking.View = View.Details;
 
             //colum 추가 
-            int colWidth = (int) lvwRanking.ClientSize.Width / 4;
+            int colWidth = (int) lvwRanking.ClientSize.Width / rankingInfo.Length;
             for (int i = 0; i < rankingInfo.Length; i++)
                 lvwRanking.Columns.Add(rankingInfo[i], colWidth, HorizontalAlignment.Center);
 
@@ -39,7 +39,7 @@ namespace Galaga
             {
                 ListViewItem newItem = new ListViewItem((row+1).ToString());
                 newItem.SubItems.Add(sortedList[row].id);
-                newItem.SubItems.Add(sortedList[row].stage.ToString());
+                //newItem.SubItems.Add(sortedList[row].stage.ToString());
                 newItem.SubItems.Add(sortedList[row].score.ToString());
                 newItem.SubItems.Add(sortedList[row].password);
 

@@ -34,8 +34,6 @@ namespace Galaga
             this.lblName = new System.Windows.Forms.Label();
             this.Ranking = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblStage = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
             this.btnStart = new Galaga.Ui.CustomButton();
@@ -96,39 +94,13 @@ namespace Galaga
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.Ranking_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(14, 42);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 32);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Stage : ";
-            // 
-            // lblStage
-            // 
-            this.lblStage.AutoSize = true;
-            this.lblStage.BackColor = System.Drawing.Color.Transparent;
-            this.lblStage.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblStage.ForeColor = System.Drawing.Color.White;
-            this.lblStage.Location = new System.Drawing.Point(120, 42);
-            this.lblStage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblStage.Name = "lblStage";
-            this.lblStage.Size = new System.Drawing.Size(75, 32);
-            this.lblStage.TabIndex = 1;
-            this.lblStage.Text = "Stage";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(14, 79);
+            this.label3.Location = new System.Drawing.Point(14, 47);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 32);
@@ -141,7 +113,7 @@ namespace Galaga
             this.lblScore.BackColor = System.Drawing.Color.Transparent;
             this.lblScore.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblScore.ForeColor = System.Drawing.Color.White;
-            this.lblScore.Location = new System.Drawing.Point(120, 79);
+            this.lblScore.Location = new System.Drawing.Point(120, 47);
             this.lblScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(74, 32);
@@ -157,6 +129,7 @@ namespace Galaga
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(268, 86);
             this.btnStart.TabIndex = 5;
+            this.btnStart.TabStop = false;
             this.btnStart.Text = "Start";
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -171,8 +144,6 @@ namespace Galaga
             this.Controls.Add(this.Ranking);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblStage);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -194,8 +165,6 @@ namespace Galaga
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label Ranking;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblStage;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblScore;
         private Ui.CustomButton btnStart;

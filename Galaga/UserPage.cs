@@ -27,7 +27,7 @@ namespace Galaga
             var userIndex = userInfo.FindIndex(it => string.Equals(it.id, userName));
 
             lblName.Text = userInfo[userIndex].id;
-            lblStage.Text = userInfo[userIndex].stage.ToString();
+            //lblStage.Text = userInfo[userIndex].stage.ToString();
             lblScore.Text = userInfo[userIndex].score.ToString();
         }
 

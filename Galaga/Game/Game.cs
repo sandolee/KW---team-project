@@ -142,24 +142,6 @@ namespace Galaga.Game {
                 return new Entity.Entity[0];
             }
 
-            public IEnumerable<Entity.Entity> GetSpawnItems(int currentTick)
-            {
-
-                //Random p = new Random();
-                //Random randomX = new Random();
-                //var worldHeight = _world.Size.Height;
-                //var worldWidth = _world.Size.Width;
-                //if (p.Next(1, 101) <= 60)
-                //{
-                //    var items = new List<Entity.Entity>();
-                //    items.Add(new Potion(
-                //        new Position(randomX.Next(5, worldWidth), worldHeight - 5),
-                //        _world, new Size(10, 10),
-                //        1));
-                //    return items;
-                //}
-                return new Entity.Entity[0];
-            }
         }
     }
 }

@@ -101,27 +101,29 @@ namespace Galaga.Game {
                 var worldHeight = _world.Size.Height;
                 var worldWidth = _world.Size.Width;
 
-                //30% 확률로 item 생성
-                var items = new List<Entity.Entity>();//적 생성 후 entities에 추가 
-                Random p = new Random();
-                Random randomX = new Random();
-                if (p.Next(1, 101) <= 30)
-                {
-                    items.Add(new Potion(
-                    new Position(randomX.Next(5, worldWidth - 5) , worldHeight - 5),
-                    _world, new Size(10, 10),
-                    1));
-                }
-                if (p.Next(1, 101) <= 30)
-                {
-                    items.Add(new Heart(
-                    new Position(randomX.Next(5, worldWidth - 5) , worldHeight - 5),
-                    _world, new Size(10, 10),
-                    1));
-                }
 
                 if (currentTick - _lastSpawn > 100) {
                     var entities = new List<Entity.Entity>();
+
+                    //30% 확률로 item 생성
+                    var items = new List<Entity.Entity>();//적 생성 후 entities에 추가 
+                    Random p = new Random();
+                    Random randomX = new Random();
+                    if (p.Next(1, 101) <= 30)
+                    {
+                        items.Add(new Potion(
+                        new Position(randomX.Next(5, worldWidth - 5), worldHeight - 5),
+                        _world, new Size(10, 10),
+                        1));
+                    }
+
+                    if (p.Next(1, 101) <= 30)
+                    {
+                        items.Add(new Heart(
+                        new Position(randomX.Next(5, worldWidth - 5), worldHeight - 5),
+                        _world, new Size(10, 10),
+                        1));
+                    }
 
                     for (var i = 0; i < 4; ++i) {
                         entities.Add(new StraightEnemy(

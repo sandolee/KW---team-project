@@ -29,11 +29,14 @@ namespace Galaga {
 
             var world = _manager.GetWorld();
             
-            // 테스트적 생성
-            var enemy = new TestEnemy(world);
+            // 테스트적 생성(맛보기 적 리스폰)
+            var enemy = new Test1Enemy(world);
             world.EntityManager.AddEntity(enemy);
-            var bossenemy = new TestBossEnemy(world);
-            world.EntityManager.AddEntity(bossenemy);
+            var enemy2 = new Test2Enemy(world);
+            world.EntityManager.AddEntity(enemy2);
+            
+            //var bossenemy = new TestBossEnemy(world);
+            //world.EntityManager.AddEntity(bossenemy);
 
             // 아이템 테스트 
             Heart heart = new Heart(world);
@@ -41,7 +44,7 @@ namespace Galaga {
             Potion potion = new Potion(world);
             world.EntityManager.AddEntity(potion);
 
-            world.EntityManager.AddEntity(new TestEnemy(_manager.GetWorld()));
+            world.EntityManager.AddEntity(new Test1Enemy(_manager.GetWorld()));
 
             _manager.Start();
             

@@ -95,23 +95,63 @@ namespace Galaga.Game {
             }
             
             public IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick) {
-                if (currentTick - _lastSpawn > 100) {
+                var worldWidth = _world.Size.Width;
+                
+                if (currentTick - _lastSpawn > 100 ) {
                     var entities = new List<Entity.Entity>();
 
-                    var worldWidth = _world.Size.Width;
+                    
+                    if(currentTick < 1200){
+                        for (var i = 0; i < 4; ++i) {
+                            entities.Add(new StraightEnemy(
+                                new Position(worldWidth / 5 * (i + 1), 0), 
+                                _world, new Size(10, 10),
+                                5
+                            ));
 
-                    for (var i = 0; i < 4; ++i) {
-                        entities.Add(new StraightEnemy(
-                            new Position(worldWidth / 5 * (i + 1), 0), 
-                            _world, new Size(10, 10),
-                            5
-                        ));
-
-                        _lastSpawn = currentTick;
+                            entities.Add(new Test1Enemy(
+                                new Position(worldWidth / 5 , 0), 
+                                _world, 
+                                5
+                            ));
+                   
+                            _lastSpawn = currentTick;
+                        }
                     }
 
+                     if(currentTick < 2400 && currentTick >1200){
+                        for (var i = 0; i < 4; ++i) {
+                            entities.Add(new StraightEnemy(
+                                new Position(worldWidth / 5 * (i + 1), 0), 
+                                _world, new Size(10, 10),
+                                5
+                            ));
+
+                            entities.Add(new Test2Enemy(
+                                new Position(worldWidth / 5 * (i + 1), 10), 
+                                _world, 
+                                5
+                            ));
+                   
+                            _lastSpawn = currentTick;
+                        }
+                    }
+
+                    /*if(currentTick > 2400){
+                        entities.Add(new TestBossEnemy(
+                            new Position(worldWidth/2 , 15), 
+                            _world, 
+                            10
+                        ));
+                        _lastSpawn = currentTick;
+                    }*/
+
+
+                     
                     return entities;
                 }
+                
+                  
                 
                 return new Entity.Entity[0];
             }

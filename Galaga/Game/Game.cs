@@ -68,12 +68,20 @@ namespace Galaga.Game {
     }
     
     internal class Stage1Game : BaseGame {
+        private bool _isOver = false;
+        
         public Stage1Game() : base(new World()) {
             var world = GetWorld();
             world.SetEntitySpawner(new EntitySpawner(world));
 
             //피격시 10점 
             SetScore(10);
+            
+            world.EntityManager.OnEntityKill.Add(entity => {
+                if (entity is Player) {
+                    _isOver = true;
+                }
+            });
         }
 
         public override bool IsCleared() {
@@ -81,7 +89,7 @@ namespace Galaga.Game {
         }
 
         public override bool IsOver() {
-            return false;
+            return _isOver;
         }
 
         // Stage 1의 엔티티 소환을 관리

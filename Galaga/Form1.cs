@@ -10,6 +10,8 @@ namespace Galaga {
         private readonly GameRenderer _gameRenderer;
         private readonly GameManager _manager;
 
+        private readonly Timer _timer;
+
         //private Label _label = new Label();
         
         public Form1(string ID) {
@@ -20,11 +22,11 @@ namespace Galaga {
             _manager = new GameManager();
             _gameRenderer = new GameRenderer(this, _manager);
 
-            var timer = new Timer {
+            _timer = new Timer {
                 Interval = 50, Enabled = true
             };
-            timer.Tick += OnTimerTick;
-            timer.Start();
+            _timer.Tick += OnTimerTick;
+            _timer.Start();
             KeyDown += Form1_KeyDown;
 
             var world = _manager.GetWorld();
@@ -44,13 +46,18 @@ namespace Galaga {
             world.EntityManager.AddEntity(new TestEnemy(_manager.GetWorld()));
 
             _manager.Start();
-            
         }
 
         private void OnTimerTick(object obj, EventArgs args) {
-            _manager.Tick(_tick++);
-
-            Invalidate();
+            if (_manager.State is GameOverState) {
+                _timer.Enabled = false;
+                
+                MessageBox.Show("게임 오버!", "게임 오버");
+                Close();
+            } else {
+                _manager.Tick(_tick++);
+                Invalidate();
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e) {

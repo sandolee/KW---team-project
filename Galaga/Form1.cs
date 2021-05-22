@@ -54,7 +54,12 @@ namespace Galaga {
                 
                 MessageBox.Show("게임 오버!", "게임 오버");
                 Close();
-            } else {
+            } else if (_manager.State is CompleteState) {
+                _timer.Enabled = false;
+
+                MessageBox.Show("게임 클리어", "게임 클리어");
+                Close();
+            }else {
                 _manager.Tick(_tick++);
                 Invalidate();
             }

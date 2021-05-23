@@ -12,12 +12,10 @@ namespace Galaga {
 
         private readonly Timer _timer;
 
-        //private Label _label = new Label();
         
         public Form1(string ID) {
             InitializeComponent();
             this.ID = ID;
-            //Controls.Add(_label);
             
             _manager = new GameManager();
             _gameRenderer = new GameRenderer(this, _manager);

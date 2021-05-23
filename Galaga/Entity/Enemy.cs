@@ -16,6 +16,7 @@ namespace Galaga.Entity {
 
 	public class Test1Enemy: Enemy{
 		private int tempTick = -1;
+
 		
 		public Test1Enemy(World world) : this(new Position(0, 0), world, 1){}
 		
@@ -72,8 +73,8 @@ namespace Galaga.Entity {
 			if (currentTick - tempTick > 10) {
 				World.EntityManager.AddEntity(new StraightEnemyAmmo(new Position(Position.X-5, Position.Y), World));
 				World.EntityManager.AddEntity(new StraightEnemyAmmo(new Position(Position.X+5, Position.Y), World));
-				//World.EntityManager.AddEntity(new Test1EnemyAmmo(new Position(Position.X, Position.Y), World));
-				//World.EntityManager.AddEntity(new Test2EnemyAmmo(new Position(Position.X, Position.Y), World));
+				World.EntityManager.AddEntity(new Test1EnemyAmmo(new Position(Position.X, Position.Y), World));
+				World.EntityManager.AddEntity(new Test2EnemyAmmo(new Position(Position.X, Position.Y), World));
 				tempTick = currentTick;
 				Position.X= Position.X - 22;
 				Position.Y= Position.Y - 11;
@@ -81,7 +82,5 @@ namespace Galaga.Entity {
 			}
 
 		}
-
-
 	}
 }

@@ -23,7 +23,7 @@ namespace Galaga.Entity.AmmoEntity {
 		}
 	}
 
-	/*public class Test1EnemyAmmo : Entity
+	public class Test1EnemyAmmo : Entity
 	{
 		private const int AmmoHealth = int.MaxValue;
 
@@ -77,5 +77,5 @@ namespace Galaga.Entity.AmmoEntity {
 				}
 			}
 		}
-	}*/
+	}
 }

@@ -85,6 +85,8 @@ namespace Galaga {
                     case StraightEnemyAmmo _:
                         graphics.DrawImage(Resources.EnemyAmmo, EntityToRect(entity, factorWidth, factorHeight));
                         break;
+                    default:
+                        throw new InvalidDataException("unknown entity type");
                 }
             }
             foreach (Control c in _control.Controls)

@@ -55,9 +55,10 @@ namespace Galaga
             this.btnSignUp.Location = new System.Drawing.Point(325, 478);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.Size = new System.Drawing.Size(270, 71);
-            this.btnSignUp.TabIndex = 1;
+            this.btnSignUp.TabIndex = 2;
             this.btnSignUp.Text = "SignUp";
             this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
+            this.btnSignUp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnLogin_KeyDown);
             // 
             // btnLogin
             // 
@@ -70,6 +71,7 @@ namespace Galaga
             this.btnLogin.TabIndex = 1;
             this.btnLogin.Text = "Login";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnLogin_KeyDown);
             // 
             // Main
             // 

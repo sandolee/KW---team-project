@@ -49,5 +49,20 @@ namespace Galaga.Ui
             Invalidate();
         }
 
+        protected override void OnGotFocus(EventArgs eventArgs)
+        {
+            base.OnGotFocus(eventArgs);
+            this.BackColor = Color.FromArgb(100, Color.White);
+            this.ForeColor = Color.Black;
+            Invalidate();
+        }
+        protected override void OnLostFocus(EventArgs eventArgs)
+        {
+            base.OnLostFocus(eventArgs);
+            this.BackColor = Color.Transparent;
+            this.ForeColor = Color.White;
+            Invalidate();
+        }
+
     }
 }

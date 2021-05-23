@@ -65,7 +65,7 @@ namespace Galaga
             this.txtPWCheck.Name = "txtPWCheck";
             this.txtPWCheck.PasswordChar = '*';
             this.txtPWCheck.Size = new System.Drawing.Size(172, 28);
-            this.txtPWCheck.TabIndex = 1;
+            this.txtPWCheck.TabIndex = 3;
             this.txtPWCheck.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // label2
@@ -96,7 +96,7 @@ namespace Galaga
             this.txtPW.Name = "txtPW";
             this.txtPW.PasswordChar = '*';
             this.txtPW.Size = new System.Drawing.Size(172, 28);
-            this.txtPW.TabIndex = 1;
+            this.txtPW.TabIndex = 2;
             this.txtPW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // label4
@@ -118,9 +118,10 @@ namespace Galaga
             this.btnOk.Location = new System.Drawing.Point(153, 209);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(135, 50);
-            this.btnOk.TabIndex = 3;
+            this.btnOk.TabIndex = 4;
             this.btnOk.Text = "OK";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            this.btnOk.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnOk_KeyDown);
             // 
             // SignUp
             // 

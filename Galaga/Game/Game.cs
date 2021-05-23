@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Galaga.Entity;
 using Galaga.Entity.EnemyEntity;
 
@@ -96,6 +97,7 @@ namespace Galaga.Game {
         }
 
         // Stage 1의 엔티티 소환을 관리
+        // item 소환, form tab 순서 관리, 이미지 크기 줄이기
         private class EntitySpawner : IEntitySpawner {
             private int _lastSpawn = -1;
             private bool _hasBossSpawned;
@@ -116,7 +118,28 @@ namespace Galaga.Game {
                     || (_hasBossSpawned && currentTick - _lastSpawn > 200)) {
                     var entities = new List<Entity.Entity>();
 
+                    var worldHeight = _world.Size.Height;
                     var worldWidth = _world.Size.Width;
+
+                    //30% 확률로 item 생성
+                    var items = new List<Entity.Entity>();//적 생성 후 entities에 추가 
+                    Random p = new Random();
+                    Random randomX = new Random();
+                    if (p.Next(1, 101) <= 30)
+                    {
+                        items.Add(new Potion(
+                        new Position(randomX.Next(5, worldWidth - 5), worldHeight - 5),
+                        _world, new Size(10, 10),
+                        1));
+                    }
+
+                    if (p.Next(1, 101) <= 30)
+                    {
+                        items.Add(new Heart(
+                        new Position(randomX.Next(5, worldWidth - 5), worldHeight - 5),
+                        _world, new Size(10, 10),
+                        1));
+                    }
 
                     for (var i = 0; i < 4; ++i) {
                         entities.Add(new StraightEnemy(
@@ -127,12 +150,16 @@ namespace Galaga.Game {
 
                         _lastSpawn = currentTick;
                     }
+                    
+                    //item 추가 
+                    entities.AddRange(items);
 
                     return entities;
                 }
                 
                 return new Entity.Entity[0];
             }
+
         }
     }
 }

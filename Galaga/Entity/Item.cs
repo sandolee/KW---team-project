@@ -19,7 +19,7 @@ namespace Galaga.Entity
         {
         }
         public Heart(Position position, World world, Size size, int health) : base(
-            new Position(world.Size.Width-10, (int)(world.Size.Height - 5)),
+            position,
             world,
             new Size(10, 10),
             health)
@@ -45,8 +45,7 @@ namespace Galaga.Entity
         public Potion(World world) : this(new Position(0, 0), world, new Size(1, 1), 1)
         {
         }
-        public Potion(Position position, World world, Size size, int health) : base(
-            new Position(world.Size.Width-20, (int)(world.Size.Height - 5)),
+        public Potion(Position position, World world, Size size, int health) : base(position,
             world,
             new Size(10, 10),
             health)

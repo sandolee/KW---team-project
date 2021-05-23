@@ -59,5 +59,11 @@ namespace Galaga
             if (e.KeyCode == Keys.Enter)
                 btnOk_Click(sender, e);
         }
+
+        private void btnOk_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnOk_Click(sender, e);
+        }
     }
 }

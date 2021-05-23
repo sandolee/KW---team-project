@@ -30,25 +30,13 @@ namespace Galaga
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnOk = new Galaga.Ui.CustomButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPW = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnOk = new Galaga.Ui.CustomButton();
             this.SuspendLayout();
-            // 
-            // btnOk
-            // 
-            this.btnOk.BackColor = System.Drawing.Color.Transparent;
-            this.btnOk.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOk.ForeColor = System.Drawing.Color.White;
-            this.btnOk.Location = new System.Drawing.Point(154, 175);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(135, 50);
-            this.btnOk.TabIndex = 9;
-            this.btnOk.Text = "OK";
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // label3
             // 
@@ -78,7 +66,7 @@ namespace Galaga
             this.txtPW.Name = "txtPW";
             this.txtPW.PasswordChar = '*';
             this.txtPW.Size = new System.Drawing.Size(172, 28);
-            this.txtPW.TabIndex = 5;
+            this.txtPW.TabIndex = 1;
             this.txtPW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtID
@@ -86,7 +74,7 @@ namespace Galaga
             this.txtID.Location = new System.Drawing.Point(154, 91);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(172, 28);
-            this.txtID.TabIndex = 6;
+            this.txtID.TabIndex = 0;
             this.txtID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // label1
@@ -99,6 +87,19 @@ namespace Galaga
             this.label1.Size = new System.Drawing.Size(111, 48);
             this.label1.TabIndex = 4;
             this.label1.Text = "Login";
+            // 
+            // btnOk
+            // 
+            this.btnOk.BackColor = System.Drawing.Color.Transparent;
+            this.btnOk.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOk.ForeColor = System.Drawing.Color.White;
+            this.btnOk.Location = new System.Drawing.Point(154, 175);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(135, 50);
+            this.btnOk.TabIndex = 2;
+            this.btnOk.Text = "OK";
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            this.btnOk.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnOk_KeyDown);
             // 
             // Login
             // 

@@ -50,6 +50,7 @@
     <Compile Include="Entity\Ammo.cs" />
     <Compile Include="Entity\AmmoEntity\StraightEnemyAmmo.cs" />
     <Compile Include="Entity\Enemy.cs" />
+    <Compile Include="Entity\EnemyEntity\Boss.cs" />
     <Compile Include="Entity\EnemyEntity\StraightEnemy.cs" />
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Entity\Item.cs" />

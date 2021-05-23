@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 using Galaga.Entity;
 
 namespace Galaga.Game {
@@ -10,15 +10,11 @@ namespace Galaga.Game {
         
         private readonly List<Entity.Entity> _entities = new List<Entity.Entity>();
 
-        public readonly ReadOnlyCollection<Entity.Entity> Entities;
+        public IEnumerable<Entity.Entity> Entities => _entities.Skip(0);
 
-        public EntityManager() {
-            Entities = _entities.AsReadOnly();
-        }
-        
         public delegate void OnEntityKillDelegate(Entity.Entity entity);
         public readonly List<OnEntityKillDelegate> OnEntityKill = new List<OnEntityKillDelegate>();
-        
+
         //틱마다 list에 delegate가 추가되는 문제 
         public delegate void OnEntityAttackedDelegate(Entity.Entity entity);
         public readonly List<OnEntityAttackedDelegate> OnEntityAttacked = new List<OnEntityAttackedDelegate>();

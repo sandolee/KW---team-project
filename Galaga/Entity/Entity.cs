@@ -46,30 +46,37 @@ namespace Galaga.Entity {
         public GodMode GodMode;
         
         public int Health { get; private set; }
+        public int MaxHealth { get; private set; }
 
         private readonly Size _size;
 
-        public Boolean IfAttacked { get; private set; }
         public Size Size => _size;
 
-        public void Kill()
-        {
-            Health = 0;
+        protected Entity(Position position, World world, Size size, int health): this(position, world, size, health, health) {
         }
 
-        protected Entity(Position position, World world, Size size, int health) {
+        protected Entity(Position position, World world, Size size, int health, int maxHealth) {
             Position = position;
             World = world;
             Health = health;
+            MaxHealth = maxHealth;
             _size = size;
             GodMode = new GodMode();
         }
 
-        protected Entity(Position position, World world, int health): this(position, world, new Size(1, 1), health) {
+        protected Entity(Position position, World world, int health): this(position, world, new Size(1, 1), health, health) {
             
         }
 
-        protected Entity(World world): this(new Position(0, 0), world, 0) {
+        protected Entity(World world): this(new Position(0, 0), world, 1) {
+        }
+        
+        public void Kill()
+        {
+            Health = 0;
+        }
+        public void Heal(int heal) {
+            Health = Math.Min(MaxHealth, Health + heal);
         }
 
         public void Attack(int damage) {
@@ -101,11 +108,6 @@ namespace Galaga.Entity {
                 return false;
 
             else return true;
-        }
-
-        public void Heal(int heal)
-        {
-            Health += heal;
         }
     }
 }

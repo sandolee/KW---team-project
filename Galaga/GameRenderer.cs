@@ -52,13 +52,13 @@ namespace Galaga {
 
                         graphics.DrawRectangle(pen, (int) ((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth), (int) ((enemy.Position.Y - enemy.Size.Height ) * factorHeight), 
                             (int) (enemy.Size.Width * factorWidth),  (int) (enemy.Size.Height * factorHeight/2));
-                                              
+
                         //graphics.FillRectangle(Brushes.Black, (int) ((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth ), (int) ((enemy.Position.Y - enemy.Size.Height ) * factorHeight), 
                             //(int) (enemy.Size.Width * factorWidth),  (int) (enemy.Size.Height * factorHeight/2));
-                                                
+
                         graphics.FillRectangle(Brushes.Red, (int) ((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth) , (int) ((enemy.Position.Y - enemy.Size.Height ) * factorHeight), 
-                            (int) (enemy.Size.Width * factorWidth/10*enemy.Health),  (int) (enemy.Size.Height * factorHeight/2));
-                        
+                            (int) (enemy.Size.Width * factorWidth/enemy.MaxHealth*enemy.Health),  (int) (enemy.Size.Height * factorHeight/2));
+
                         break;
                     case Ammo ammo:
                         graphics.DrawImage(Resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));
@@ -71,8 +71,8 @@ namespace Galaga {
                                               
                         graphics.FillRectangle(Brushes.White, (int) ((player.Position.X - player.Size.Width / 2f) * factorWidth ), (int) ((player.Position.Y - player.Size.Height / 2f) * factorHeight*0.9), 
                             (int) (player.Size.Width * factorWidth),  (int) (player.Size.Height * factorHeight/2));
-                                                
-                        graphics.FillRectangle(Brushes.Red, (int) ((player.Position.X - player.Size.Width / 2f) * factorWidth + player.Size.Width * factorWidth/10*player.Health), (int) ((player.Position.Y - player.Size.Height / 2f) * factorHeight*0.9), 
+
+                        graphics.FillRectangle(Brushes.Red, (int) ((player.Position.X - player.Size.Width / 2f) * factorWidth + player.Size.Width * factorWidth/player.MaxHealth*player.Health), (int) ((player.Position.Y - player.Size.Height / 2f) * factorHeight*0.9), 
                             (int) (player.Size.Width * factorWidth/10*(10-player.Health)),  (int) (player.Size.Height * factorHeight/2));
 
                         break;

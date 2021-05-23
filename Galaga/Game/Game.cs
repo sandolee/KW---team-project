@@ -99,7 +99,7 @@ namespace Galaga.Game {
             
             public IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick) {
                 var worldWidth = _world.Size.Width;
-                int temp1 = rand1.Next(5);
+                int temp1 = rand1.Next(4);
                 if( temp1 == 0)
                     temp1 = 1;
                 
@@ -119,9 +119,9 @@ namespace Galaga.Game {
                                 _world, new Size(10, 10),
                                 5
                             ));
-                            if(currentTick - _lastSpawn > rand1.Next(100)){
+                            if(currentTick - _lastSpawn > rand1.Next(150)){
                                 entities.Add(new Test1Enemy(
-                                    new Position(worldWidth / temp1+2 , temp2), 
+                                    new Position(worldWidth /5* temp1 , rand1.Next(20)), 
                                     _world, 
                                     5
                                 ));
@@ -138,9 +138,9 @@ namespace Galaga.Game {
                                 _world, new Size(10, 10),
                                 5
                             ));
-                            if(  currentTick - _lastSpawn > rand1.Next(100)){
+                            if(currentTick - _lastSpawn > rand1.Next(150)){
                                 entities.Add(new Test2Enemy(
-                                    new Position(worldWidth / temp1 * (i + 1), rand2.Next(25)), 
+                                    new Position(worldWidth /5* temp1 , rand2.Next(25)), 
                                     _world, 
                                     5
                                 ));

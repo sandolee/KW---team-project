@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Galaga.Entity;
 using Galaga.Entity.EnemyEntity;
 
@@ -87,6 +88,8 @@ namespace Galaga.Game {
         // Stage 1의 엔티티 소환을 관리
         private class EntitySpawner : IEntitySpawner {
             private int _lastSpawn = -1;
+            private Random rand1 = new Random();
+            private Random rand2 = new Random();
 
             private readonly World _world;
 
@@ -96,58 +99,57 @@ namespace Galaga.Game {
             
             public IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick) {
                 var worldWidth = _world.Size.Width;
+                int temp1 = rand1.Next(5);
+                if( temp1 == 0)
+                    temp1 = 1;
+                
+                
+                int temp2 = rand2.Next(5);
+                if( temp2 == 0)
+                    temp2 = 1;
                 
                 if (currentTick - _lastSpawn > 100 ) {
                     var entities = new List<Entity.Entity>();
 
                     
-                    if(currentTick < 1200){
-                        for (var i = 0; i < 4; ++i) {
+                    if(currentTick < 1200  ){
+                        for (var i = 0; i < rand1.Next(5); ++i) {
                             entities.Add(new StraightEnemy(
-                                new Position(worldWidth / 5 * (i + 1), 0), 
+                                new Position(worldWidth / 5 * (i + 1), rand1.Next(30)), 
                                 _world, new Size(10, 10),
                                 5
                             ));
-
-                            entities.Add(new Test1Enemy(
-                                new Position(worldWidth / 5 , 0), 
-                                _world, 
-                                5
-                            ));
+                            if(currentTick - _lastSpawn > rand1.Next(100)){
+                                entities.Add(new Test1Enemy(
+                                    new Position(worldWidth / temp1+2 , temp2), 
+                                    _world, 
+                                    5
+                                ));
+                            }
                    
                             _lastSpawn = currentTick;
                         }
                     }
 
-                     if(currentTick < 2400 && currentTick >1200){
-                        for (var i = 0; i < 4; ++i) {
+                     if(currentTick < 1800 && currentTick >1200){
+                        for (var i = 0; i < rand1.Next(5); ++i) {
                             entities.Add(new StraightEnemy(
-                                new Position(worldWidth / 5 * (i + 1), 0), 
+                                new Position(worldWidth / 5 * (i + 1),  rand2.Next(25)), 
                                 _world, new Size(10, 10),
                                 5
                             ));
-
-                            entities.Add(new Test2Enemy(
-                                new Position(worldWidth / 5 * (i + 1), 10), 
-                                _world, 
-                                5
-                            ));
+                            if(  currentTick - _lastSpawn > rand1.Next(100)){
+                                entities.Add(new Test2Enemy(
+                                    new Position(worldWidth / temp1 * (i + 1), rand2.Next(25)), 
+                                    _world, 
+                                    5
+                                ));
+                             }
                    
                             _lastSpawn = currentTick;
                         }
                     }
-
-                    /*if(currentTick > 2400){
-                        entities.Add(new TestBossEnemy(
-                            new Position(worldWidth/2 , 15), 
-                            _world, 
-                            10
-                        ));
-                        _lastSpawn = currentTick;
-                    }*/
-
-
-                     
+  
                     return entities;
                 }
                 

@@ -29,14 +29,13 @@ namespace Galaga {
 
             var world = _manager.GetWorld();
             
-            // 테스트적 생성(맛보기 적 리스폰)
-            //var enemy = new Test1Enemy(world);
-            //world.EntityManager.AddEntity(enemy);
-            //var enemy2 = new Test2Enemy(world);
-            //world.EntityManager.AddEntity(enemy2);
+            //테스트적 생성(맛보기 적 리스폰)
+            var enemy = new Test1Enemy(world);
+            world.EntityManager.AddEntity(enemy);
+            var enemy2 = new Test2Enemy(world);
+            world.EntityManager.AddEntity(enemy2);
             
-            var bossenemy = new TestBossEnemy(world);
-            world.EntityManager.AddEntity(bossenemy);
+           
 
             // 아이템 테스트 
             Heart heart = new Heart(world);

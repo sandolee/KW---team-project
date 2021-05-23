@@ -14,10 +14,10 @@ namespace Galaga.Entity {
 		}
 	}
 
+	//스폰시간, 위치 랜덤 추가 필요, 4개씩 나오는거 수정
 	public class Test1Enemy: Enemy{
 		private int tempTick = -1;
-
-		
+	
 		public Test1Enemy(World world) : this(new Position(0, 0), world, 1){}
 		
 		public Test1Enemy(Position position, World world, int health) : base(
@@ -55,32 +55,6 @@ namespace Galaga.Entity {
 			}
 		
 		
-		}
-	}
-
-	public class TestBossEnemy: Enemy{
-		private int tempTick = -1;
-		public TestBossEnemy(World world) : this(new Position(30, 20), world, 10){}
-		
-		public TestBossEnemy(Position position, World world, int health) : base(position, world, new Size(10, 10),health){}
-
-		public override void OnTick(int currentTick) {
-      		Position.X= Position.X + 2;
-			Position.Y= Position.Y + 1;
- 		
-			
-			
-			if (currentTick - tempTick > 10) {
-				World.EntityManager.AddEntity(new StraightEnemyAmmo(new Position(Position.X-5, Position.Y), World));
-				World.EntityManager.AddEntity(new StraightEnemyAmmo(new Position(Position.X+5, Position.Y), World));
-				World.EntityManager.AddEntity(new Test1EnemyAmmo(new Position(Position.X, Position.Y), World));
-				World.EntityManager.AddEntity(new Test2EnemyAmmo(new Position(Position.X, Position.Y), World));
-				tempTick = currentTick;
-				Position.X= Position.X - 22;
-				Position.Y= Position.Y - 11;
-																																																																					
-			}
-
 		}
 	}
 }

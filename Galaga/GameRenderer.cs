@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Galaga.Entity;
 using Galaga.Entity.AmmoEntity;
 using Galaga.Game;
+using System.IO;
 
 namespace Galaga {
     public class GameRenderer {

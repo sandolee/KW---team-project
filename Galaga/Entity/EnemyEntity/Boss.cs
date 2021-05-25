@@ -18,7 +18,7 @@ namespace Galaga.Entity.EnemyEntity {
 		public Boss(World world) : this(new Position(0, 0), world) {
 		}
 
-		public Boss(Position position, World world) : base(position, world, new Size(10, 10), 60) {
+		public Boss(Position position, World world) : base(position, world, new Size(15, 15), 60) {
 		}
 
 		public override void OnTick(int currentTick) {

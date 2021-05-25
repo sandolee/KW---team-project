@@ -18,7 +18,8 @@ namespace Galaga.Entity {
 			return b.Position.X + b.Size.Width/2 >= this.Position.X && b.Position.X - b.Size.Width/2 <= this.Position.X && 
 				b.Position.Y + b.Size.Height/2 >= this.Position.Y && b.Position.Y - b.Size.Height/2 <= this.Position.Y;
         }
-		
+
+
 		public override void OnTick(int currentTick) {
 			
 			Position.Y= Position.Y - 5;

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Galaga.Entity;
 using Galaga.Entity.AmmoEntity;
+using Galaga.Entity.EnemyEntity;
 using Galaga.Game;
 
 namespace Galaga {
@@ -46,18 +47,28 @@ namespace Galaga {
             foreach (var entity in entities)
             {
                 switch (entity)
-                {
-                    case Enemy enemy:
-                        graphics.DrawImage(Resources.Enemy, EntityToRect(enemy,factorWidth, factorHeight));
+                {                    
+                    case Boss boss:
+                        graphics.DrawImage(Resources.Boss, EntityToRect(boss, factorWidth, factorHeight));
 
-                        graphics.DrawRectangle(pen, (int) ((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth), (int) ((enemy.Position.Y - enemy.Size.Height ) * factorHeight), 
-                            (int) (enemy.Size.Width * factorWidth),  (int) (enemy.Size.Height * factorHeight/2));
+                        graphics.DrawRectangle(pen, (int)((boss.Position.X - boss.Size.Width / 2f) * factorWidth), (int)((boss.Position.Y - boss.Size.Height) * factorHeight),
+                            (int)(boss.Size.Width * factorWidth), (int)(boss.Size.Height * factorHeight / 2));     
+
+                        graphics.FillRectangle(Brushes.Red, (int)((boss.Position.X - boss.Size.Width / 2f) * factorWidth), (int)((boss.Position.Y - boss.Size.Height) * factorHeight),
+                            (int)(boss.Size.Width * factorWidth / boss.MaxHealth * boss.Health), (int)(boss.Size.Height * factorHeight / 2));
+
+                        break;
+                    case Enemy enemy:
+                        graphics.DrawImage(Resources.Enemy, EntityToRect(enemy, factorWidth, factorHeight));
+
+                        graphics.DrawRectangle(pen, (int)((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth), (int)((enemy.Position.Y - enemy.Size.Height) * factorHeight),
+                            (int)(enemy.Size.Width * factorWidth), (int)(enemy.Size.Height * factorHeight / 2));
 
                         //graphics.FillRectangle(Brushes.Black, (int) ((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth ), (int) ((enemy.Position.Y - enemy.Size.Height ) * factorHeight), 
-                            //(int) (enemy.Size.Width * factorWidth),  (int) (enemy.Size.Height * factorHeight/2));
+                        //(int) (enemy.Size.Width * factorWidth),  (int) (enemy.Size.Height * factorHeight/2));
 
-                        graphics.FillRectangle(Brushes.Red, (int) ((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth) , (int) ((enemy.Position.Y - enemy.Size.Height ) * factorHeight), 
-                            (int) (enemy.Size.Width * factorWidth/enemy.MaxHealth*enemy.Health),  (int) (enemy.Size.Height * factorHeight/2));
+                        graphics.FillRectangle(Brushes.Red, (int)((enemy.Position.X - enemy.Size.Width / 2f) * factorWidth), (int)((enemy.Position.Y - enemy.Size.Height) * factorHeight),
+                            (int)(enemy.Size.Width * factorWidth / enemy.MaxHealth * enemy.Health), (int)(enemy.Size.Height * factorHeight / 2));
 
                         break;
                     case Ammo ammo:
@@ -117,10 +128,11 @@ namespace Galaga {
     internal class ImageResources {
         public readonly Image Ammo = Properties.Resources.ammo;
         public readonly Image EnemyAmmo = Properties.Resources.ammo;
-        public readonly Image Enemy = Properties.Resources.Enemy;
-        public readonly Image Player = Properties.Resources.Entity1;
-        public readonly Image Heart = Properties.Resources.heart;
-        public readonly Image Potion = Properties.Resources.potion;
+        public readonly Image Enemy = Properties.Resources.Enemy2;
+        public readonly Image Player = Properties.Resources.Player;
+        public readonly Image Heart = Properties.Resources.Heart2;
+        public readonly Image Potion = Properties.Resources.Potion2;
+        public readonly Image Boss = Properties.Resources.Boss;
 
         public ImageResources() {
             EnemyAmmo.RotateFlip(RotateFlipType.RotateNoneFlipY);

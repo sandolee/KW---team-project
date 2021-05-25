@@ -79,7 +79,7 @@
     <Compile Include="Game\IEntitySpawner.cs" />
     <Compile Include="Game\EntityManager.cs" />
     <Compile Include="Game\Game.cs" />
-	<Compile Include="Game\GameManager.cs" />
+    <Compile Include="Game\GameManager.cs" />
     <Compile Include="Game\World.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,6 +162,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\potion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Boss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Enemy2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Potion2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Heart2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

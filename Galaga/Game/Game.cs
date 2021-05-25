@@ -89,8 +89,7 @@ namespace Galaga.Game {
         private class EntitySpawner : IEntitySpawner {
             private int _lastSpawn = -1;
             private Random rand1 = new Random();
-            private Random rand2 = new Random();
-
+            
             private readonly World _world;
 
             public EntitySpawner(World world) {
@@ -99,29 +98,28 @@ namespace Galaga.Game {
             
             public IEnumerable<Entity.Entity> GetSpawnEntities(int currentTick) {
                 var worldWidth = _world.Size.Width;
-                int temp1 = rand1.Next(4);
-                if( temp1 == 0)
-                    temp1 = 1;
-                
-                
-                int temp2 = rand2.Next(5);
-                if( temp2 == 0)
-                    temp2 = 1;
+            
                 
                 if (currentTick - _lastSpawn > 100 ) {
                     var entities = new List<Entity.Entity>();
 
-                    
                     if(currentTick < 1200  ){
-                        for (var i = 0; i < rand1.Next(5); ++i) {
+                        for (var i = 0; i < rand1.Next(5); ++i) 
+                        {
+                            int spawnNum = rand1.Next(2, 5);
                             entities.Add(new StraightEnemy(
-                                new Position(worldWidth / 5 * (i + 1), rand1.Next(30)), 
-                                _world, new Size(10, 10),
+                                new Position(rand1.Next(worldWidth * i / spawnNum+5, worldWidth * (i + 1) / spawnNum-5), rand1.Next(30)), 
+                                _world, new Size(10, 10), 
                                 5
                             ));
+                            /*entities.Add(new StraightEnemy(
+                                    new Position(worldWidth / 5 * (i + 1), rand1.Next(30)), 
+                                    _world, new Size(10, 10),   
+                                    5 
+                            ));*/
                             if(currentTick - _lastSpawn > rand1.Next(150)){
                                 entities.Add(new Test1Enemy(
-                                    new Position(worldWidth /5* temp1 , rand1.Next(20)), 
+                                    new Position(worldWidth /5* rand1.Next(1,4) , rand1.Next(20)), 
                                     _world, 
                                     5
                                 ));
@@ -131,20 +129,21 @@ namespace Galaga.Game {
                         }
                     }
 
-                     if(currentTick < 1800 && currentTick >1200){
+                    if(currentTick < 1800 && currentTick >1200){
                         for (var i = 0; i < rand1.Next(5); ++i) {
                             entities.Add(new StraightEnemy(
-                                new Position(worldWidth / 5 * (i + 1),  rand2.Next(25)), 
+                                new Position(worldWidth / 5 * (i + 1),  rand1.Next(25)), 
                                 _world, new Size(10, 10),
                                 5
                             ));
+                        
                             if(currentTick - _lastSpawn > rand1.Next(150)){
                                 entities.Add(new Test2Enemy(
-                                    new Position(worldWidth /5* temp1 , rand2.Next(25)), 
+                                    new Position(worldWidth /5* rand1.Next(1,4)  , rand1.Next(25)), 
                                     _world, 
                                     5
                                 ));
-                             }
+                            }
                    
                             _lastSpawn = currentTick;
                         }

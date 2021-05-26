@@ -143,10 +143,9 @@ namespace Galaga.Game {
                         1));
                     }
 
-                    if(currentTick < 20 * 45  ){
-                        for (var i = 0; i < rand1.Next(5); ++i) 
-                        {
-                            int spawnNum = rand1.Next(2, 5);
+                    if(currentTick < 20 * 45) {
+                        int spawnNum = rand1.Next(2, 5);
+                        for (var i = 0; i < rand1.Next(1,5); ++i) {
                             entities.Add(new StraightEnemy(
                                 new Position(rand1.Next(worldWidth * i / spawnNum+5, worldWidth * (i + 1) / spawnNum-5), rand1.Next(0,25)), 
                                 _world, new Size(10, 10), 
@@ -164,10 +163,11 @@ namespace Galaga.Game {
                     }
 
                     if(currentTick < 20 * 90 && currentTick > 20 * 45){
-                        for (var i = 0; i < rand1.Next(5); ++i) {
+                        int spawnNum = rand1.Next(2, 5);
+                        for (var i = 0; i < rand1.Next(1,5); ++i) {
                             entities.Add(new StraightEnemy(
-                                new Position(worldWidth / 5 * (i + 1),  rand1.Next(25)), 
-                                _world, new Size(10, 10),
+                                new Position(rand1.Next(worldWidth * i / spawnNum+5, worldWidth * (i + 1) / spawnNum-5), rand1.Next(0,25)), 
+                                _world, new Size(10, 10), 
                                 5
                             ));
 

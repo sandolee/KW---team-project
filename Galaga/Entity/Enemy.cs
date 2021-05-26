@@ -1,4 +1,5 @@
 ﻿using Galaga.Game;
+using Galaga.Entity.AmmoEntity;
 
 #nullable enable
 
@@ -11,10 +12,12 @@ namespace Galaga.Entity {
 		}
 	}
 
-	public class TestEnemy: Enemy{
-		public TestEnemy(World world) : this(new Position(0, 0), world, 1){}
+	public class Test1Enemy: Enemy, ISelfDisposingEntity {
+		private int tempTick = -1;
 		
-		public TestEnemy(Position position, World world, int health) : base(
+		public Test1Enemy(World world) : this(new Position(0, 0), world, 1){}
+		
+		public Test1Enemy(Position position, World world, int health) : base(
             position,
             world,
             new Size(10, 10),
@@ -24,16 +27,29 @@ namespace Galaga.Entity {
 		 public override void OnTick(int currentTick) {
          		Position.Y= Position.Y + 1;
 				Position.X= Position.X + 1;
+
+				if (currentTick - tempTick > 10) {
+					World.EntityManager.AddEntity(new StraightEnemyAmmo(new Position(Position.X, Position.Y), World));
+					tempTick = currentTick;
+				}
 		 }
 	}
 
-	public class TestBossEnemy: Enemy{
-		public TestBossEnemy(World world) : this(new Position(0, 10), world, 10){}
+	public class Test2Enemy: Enemy{
+		private int tempTick = -1;
 		
-		public TestBossEnemy(Position position, World world, int health) : base(position, world, new Size(10, 10),health){}
+		public Test2Enemy(World world) : this(new Position(0, 10), world, 10){}
+		
+		public Test2Enemy(Position position, World world, int health) : base(position, world, new Size(10, 10),health){}
 
 		public override void OnTick(int currentTick) {
       		Position.X= Position.X + 1;
- 		}
+ 		
+			if (currentTick - tempTick > 10) {
+				World.EntityManager.AddEntity(new StraightEnemyAmmo(new Position(Position.X, Position.Y), World));
+				tempTick = currentTick;
+			}
+		
+		}
 	}
 }

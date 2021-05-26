@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Galaga.Entity;
 using Galaga.Entity.AmmoEntity;
 using Galaga.Game;
+using System.IO;
 
 namespace Galaga {
     public class GameRenderer {
@@ -85,6 +86,9 @@ namespace Galaga {
                     case StraightEnemyAmmo _:
                         graphics.DrawImage(Resources.EnemyAmmo, EntityToRect(entity, factorWidth, factorHeight));
                         break;
+                    default:
+                        throw new InvalidDataException("unknown entity type");
+
                 }
             }
             foreach (Control c in _control.Controls)

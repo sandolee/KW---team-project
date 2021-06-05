@@ -173,7 +173,7 @@ namespace Galaga.Game {
 
                             if(currentTick - _lastSpawn > rand1.Next(150)){
                                 entities.Add(new Test2Enemy(
-                                    new Position(worldWidth /5* rand1.Next(1,4)  , rand1.Next(2)), 
+                                    new Position(worldWidth /5* rand1.Next(1,4)  , rand1.Next(10,20)), 
                                     _world, 
                                     5
                                 ));

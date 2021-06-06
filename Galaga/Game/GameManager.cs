@@ -150,39 +150,18 @@ namespace Galaga.Game {
 
 
 			if (game.IsCleared()) {
-				if (!HasGameCleared()) return;
-
 				if (_manager.Stage >= _manager.GetMaxStage()) {
 					// 모든 스테이지를 클리어
 					_manager.State = new CompleteAllState(_manager);
 					return;
 				}
 
-				var nextState = new CompleteState(_manager);
-
-				var timer = new Timer {
-					Interval = 5000, // 5초 후에 스테이지 준비 상태로 변경
-					Enabled = true
-				};
-				timer.Elapsed += (sender, args) => {
-					if (_manager.State == nextState) {
-						_manager.State = new IntermediateState(_manager);
-					}
-				};
-
-				_manager.State = nextState;
+				_manager.State = new CompleteState(_manager);
 
 				_manager.SetStage(_manager.Stage + 1);
 			} else if (game.IsOver()) {
 				_manager.State = new GameOverState(_manager);
 			}
-		}
-
-		private bool HasGameCleared() {
-			// TODO 게임 클리어 조건 정의
-
-			//return new Random().NextDouble() < 0.01;
-			return false;
 		}
 	}
 

@@ -13,7 +13,7 @@ namespace Galaga.Entity.EnemyEntity {
 		public override void OnTick(int currentTick) {
 			Position.Y += 1;
 
-			if (currentTick - _lastShoot > 10) {
+			if (currentTick - _lastShoot > 20) {
 				World.EntityManager.AddEntity(new StraightEnemyAmmo(new Position(Position.X, Position.Y), World));
 				_lastShoot = currentTick;
 			}

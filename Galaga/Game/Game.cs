@@ -34,7 +34,7 @@ namespace Galaga.Game {
             world.EntityManager.AddEntity(_player);
             _score = 0;
         }
-
+        
         public abstract bool IsCleared();
 
         public abstract bool IsOver();

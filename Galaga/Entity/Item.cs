@@ -33,7 +33,7 @@ namespace Galaga.Entity
                 {
                     if (this.ItemCollisionCheck(player))
                     {
-                        player.Heal(1);
+                        player.Heal(3);
                         Kill();//피격시 아이템 삭제 
                     }
                 }
@@ -60,7 +60,7 @@ namespace Galaga.Entity
                     if (this.ItemCollisionCheck(player))
                     {
                         player.GodMode.StartGodMode(currentTick);
-                        Kill();//피격시 아이템 삭제 
+                        Kill();//피격시 아이템 삭제                    
                     }
                 }
             }

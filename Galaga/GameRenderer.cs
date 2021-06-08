@@ -48,12 +48,12 @@ namespace Galaga {
             foreach (var entity in entities)
             {
                 switch (entity)
-                {                    
+                {
                     case Boss boss:
                         graphics.DrawImage(Resources.Boss, EntityToRect(boss, factorWidth, factorHeight));
 
                         graphics.DrawRectangle(pen, (int)((boss.Position.X - boss.Size.Width / 2f) * factorWidth), (int)((boss.Position.Y - boss.Size.Height) * factorHeight),
-                            (int)(boss.Size.Width * factorWidth), (int)(boss.Size.Height * factorHeight / 2));     
+                            (int)(boss.Size.Width * factorWidth), (int)(boss.Size.Height * factorHeight / 2));
 
                         graphics.FillRectangle(Brushes.Red, (int)((boss.Position.X - boss.Size.Width / 2f) * factorWidth), (int)((boss.Position.Y - boss.Size.Height) * factorHeight),
                             (int)(boss.Size.Width * factorWidth / boss.MaxHealth * boss.Health), (int)(boss.Size.Height * factorHeight / 2));
@@ -76,17 +76,20 @@ namespace Galaga {
                         graphics.DrawImage(Resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));
                         break;
                     case Player player:
-                        graphics.DrawImage(Resources.Player, EntityToRect(player, factorWidth, factorHeight));
-                        
-                        graphics.DrawRectangle(pen, (int) ((player.Position.X - player.Size.Width / 2f) * factorWidth), (int) ((player.Position.Y - player.Size.Height / 2f) * factorHeight*0.9), 
-                            (int) (player.Size.Width * factorWidth),  (int) (player.Size.Height * factorHeight/2));
-                                              
-                        graphics.FillRectangle(Brushes.White, (int) ((player.Position.X - player.Size.Width / 2f) * factorWidth ), (int) ((player.Position.Y - player.Size.Height / 2f) * factorHeight*0.9), 
-                            (int) (player.Size.Width * factorWidth),  (int) (player.Size.Height * factorHeight/2));
+                        if (player.GodMode.IsGodMode == false) { 
+                            graphics.DrawImage(Resources.Player, EntityToRect(player, factorWidth, factorHeight));
+                        }else if (player.GodMode.IsGodMode == true)
+                        {
+                            graphics.DrawImage(Resources.God, EntityToRect(player, factorWidth, factorHeight));
+                        }
+                        graphics.DrawRectangle(pen, (int)((player.Position.X - player.Size.Width / 2f) * factorWidth), (int)((player.Position.Y - player.Size.Height / 2f) * factorHeight * 0.9),
+                            (int)(player.Size.Width * factorWidth), (int)(player.Size.Height * factorHeight / 2));
 
-                        graphics.FillRectangle(Brushes.Red, (int) ((player.Position.X - player.Size.Width / 2f) * factorWidth + player.Size.Width * factorWidth/player.MaxHealth*player.Health), (int) ((player.Position.Y - player.Size.Height / 2f) * factorHeight*0.9), 
-                            (int) (player.Size.Width * factorWidth/10*(10-player.Health)),  (int) (player.Size.Height * factorHeight/2));
+                        graphics.FillRectangle(Brushes.White, (int)((player.Position.X - player.Size.Width / 2f) * factorWidth), (int)((player.Position.Y - player.Size.Height / 2f) * factorHeight * 0.9),
+                            (int)(player.Size.Width * factorWidth), (int)(player.Size.Height * factorHeight / 2));
 
+                        graphics.FillRectangle(Brushes.Red, (int)((player.Position.X - player.Size.Width / 2f) * factorWidth + player.Size.Width * factorWidth / player.MaxHealth * player.Health), (int)((player.Position.Y - player.Size.Height / 2f) * factorHeight * 0.9),
+                            (int)(player.Size.Width * factorWidth / 10 * (10 - player.Health)), (int)(player.Size.Height * factorHeight / 2));
                         break;
                     case Heart heart:
                         graphics.DrawImage(Resources.Heart, EntityToRect(heart, factorWidth, factorHeight));
@@ -130,13 +133,14 @@ namespace Galaga {
     }
 
     internal class ImageResources {
-        public readonly Image Ammo = Properties.Resources.ammo;
-        public readonly Image EnemyAmmo = Properties.Resources.ammo;
+        public readonly Image Ammo = Properties.Resources.Ammo2;
+        public readonly Image EnemyAmmo = Properties.Resources.Ammo1;
         public readonly Image Enemy = Properties.Resources.Enemy2;
         public readonly Image Player = Properties.Resources.Player;
         public readonly Image Heart = Properties.Resources.Heart2;
         public readonly Image Potion = Properties.Resources.Potion2;
         public readonly Image Boss = Properties.Resources.Boss;
+        public readonly Image God = Properties.Resources.GodPalyer;
 
         public ImageResources() {
             EnemyAmmo.RotateFlip(RotateFlipType.RotateNoneFlipY);

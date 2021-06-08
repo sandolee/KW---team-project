@@ -76,10 +76,9 @@ namespace Galaga {
                         graphics.DrawImage(Resources.Ammo, EntityToRect(ammo, factorWidth, factorHeight));
                         break;
                     case Player player:
-                        if (player.GodMode.IsGodMode == false) { 
+                        if(!player.GodMode.IsGodMode) {
                             graphics.DrawImage(Resources.Player, EntityToRect(player, factorWidth, factorHeight));
-                        }else if (player.GodMode.IsGodMode == true)
-                        {
+                        }else{
                             graphics.DrawImage(Resources.God, EntityToRect(player, factorWidth, factorHeight));
                         }
                         graphics.DrawRectangle(pen, (int)((player.Position.X - player.Size.Width / 2f) * factorWidth), (int)((player.Position.Y - player.Size.Height / 2f) * factorHeight * 0.9),
